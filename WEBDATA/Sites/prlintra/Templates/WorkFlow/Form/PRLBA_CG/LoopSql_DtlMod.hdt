@@ -1,0 +1,6 @@
+<script>
+  <hdloop>
+    Add_Dtl('<HDPrint Value=#Gid# Replace=#DBField2Js#>',
+    '<HDPrint Value=#CGMemo# Replace=#DBField2Js#>');
+  </hdloop>
+</script>

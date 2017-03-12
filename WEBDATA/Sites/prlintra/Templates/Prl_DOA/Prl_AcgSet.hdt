@@ -1,0 +1,194 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/DateControl.js)##"></script>
+<script language="javascript">
+//定义全局变量，定位控件所处位置
+  var g_Type,g_Gid;
+  /*
+  *函数功能：选择不同审批人，调用同一个DataInterface，并保存一些临时控件
+  *参数1：审批人类别（10：审批人1 ;20：审批人2）
+  *参数2：审批人类别对应的中文名称
+  *参数3：审批人类别对应的组织代码
+  */
+  function GetApp(JsType,JsGid)
+  {
+    //暂时保留传递的参数
+    g_Type = JsType;
+    g_Gid = JsGid;
+
+    //对字段DataInterface 的Sql 与， count ，Title 进行赋值
+    var s_App = "select u.gid, u.code, u.name, u.atype from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')";
+
+    var c_App = "select count(*) from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')";
+
+    var t_App = '审批人_选择列表';
+
+    $("input#s_App").val(s_App);
+    $("input#c_App").val(c_App);
+    $("input#t_App").val(t_App);
+
+    //调用字段的DataInterface
+    DataInterface(frmDataInterface_App);
+  }
+  /*
+  *函数功能：审批人的DataInterface时调用函数，回写字段
+  *参数1：审批人Gid
+  *参数2：审批人Code
+  *参数3：审批人Name
+  */
+  function CallApp(JsAppGid,JsAppCode,JsAppName)
+  {
+    $("input[id="+g_Type+"UsrGid_"+g_Gid+"]").val(JsAppGid);
+    $("input[id="+g_Type+"UsrCode_"+g_Gid+"]").val(JsAppCode);
+    $("input[id="+g_Type+"UsrName_"+g_Gid+"]").val(JsAppName);
+  }
+
+  function changeCom(obj){
+    frmOther.action='##HDNet_AppName##/__ExplainModule?URL=Prl_AcgSet&UsrGid=<HDPrint Value=#UsrGid#>&ComGid='+obj.value;
+      frmOther.target='_self';
+      frmOther.submit();
+  }
+</script>
+<form name="frmOther" method="post" action=""></form>
+<form name="frmDo" method="Post" action="">
+<h3 class="TitleBar" ><HDPrint Value=#ModeleAtype#>-<HDPrint Value=#ModeleName#></h3>
+<TABLE width="100%" class="ButtonBar" cellpadding=0 cellspacing=0>
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <A Href="javascript:CheckSubmit('保存');void(0);" name="btn_1"><FONT class="IconSave">　&nbsp;</FONT> 保存 </A>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+      <A HREF="##HDNet_AppName##/MainPage?URL=&UsrGid=<HDPrint Value=#UsrGid#>"><FONT class="IconBack">　&nbsp;</FONT> 返回首页</A>
+    </TD>
+  </TR>
+</TABLE>
+<table  width="100%" class="ListBar" cellspacing="1" id="tb_ACG">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:90%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">公司:<font color="red">*</font></td>
+    <td class="listtd">
+      <select name="sel_Com" class="JQSelect JQMust" style="width:200px;" onchange="changeCom(this)">
+         <option value="">--请选择--</option>
+         <HDPrint Value=#ComList# Replace=#None#>
+      </select>
+      <script language="javascript">
+      $("select[name=sel_Com] option[value=<HDPrint Value=#ComGid# Replace=#DBField2Js#>]").prop("selected",true);
+      </script>
+
+    </td>
+  </tr>
+</table>
+<table class=ListBar width="100%" cellspacing="1" id="tb_Fee1" style="margin-top:10px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <col style="padding-left:4px;">
+  <tr class="listtr">
+    <td>项目代码</td>
+    <td>项目名称</td>
+    <td>资产经理<font color="red">*</font></td>
+    <td>博爱董事<font color="red">*</font></td>
+  </tr>
+  <HDLOOP>
+  <tr class="listtd" onmouseover="this.className='listtdfocus';" onmouseout="this.className='listtd'">
+    <td align="center"><HDPrint Value=#AcgCode#></td>
+    <td><HDPrint Value=#AcgName#></td>
+    <td>
+      <INPUT TYPE="text" NAME="BUsrName_1" id="BUsrName_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#BUsrName# Replace=#DBField2Input#>" class="JQText JQMust" onclick="GetApp('B','<HDPrint Value=#AcgGid# Replace=#DBField2Input#>')" readonly>
+      <INPUT TYPE="hidden" NAME="BUsrCode_1" id="BUsrCode_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#BUsrCode# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="BUsrGid_1" id="BUsrGid_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#BUsrGid# Replace=#DBField2Input#>" class="JQText">
+    </td>
+    <td>
+      <INPUT TYPE="text" NAME="AUsrName_1" id="AUsrName_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#AUsrName# Replace=#DBField2Input#>" class="JQText JQMust" onclick="GetApp('A','<HDPrint Value=#AcgGid# Replace=#DBField2Input#>')" readonly>
+      <INPUT TYPE="hidden" NAME="AUsrCode_1" id="AUsrCode_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#AUsrCode# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="AUsrGid_1" id="AUsrGid_<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" maxlength="32" value="<HDPrint Value=#AUsrGid# Replace=#DBField2Input#>" class="JQText">
+
+      <INPUT TYPE="hidden" NAME="ComName_1" maxlength="64" value="<HDPrint Value=#ComName# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="ComCode_1" maxlength="32" value="<HDPrint Value=#ComCode# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="ComGid_1" maxlength="32" value="<HDPrint Value=#ComGid# Replace=#DBField2Input#>" class="JQText">
+
+      <INPUT TYPE="hidden" NAME="AcgName_1" maxlength="64" value="<HDPrint Value=#AcgName# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="AcgCode_1" maxlength="32" value="<HDPrint Value=#AcgCode# Replace=#DBField2Input#>" class="JQText">
+      <INPUT TYPE="hidden" NAME="AcgGid_1" maxlength="32" value="<HDPrint Value=#AcgGid# Replace=#DBField2Input#>" class="JQText">
+    </td>
+  </tr>
+  </HDLOOP>
+</table>
+
+<FieldSet width="100%" style="padding-left:4px">
+  <legend><font color="red"><B>特别提醒</B></font></legend>
+    <li>仅用于费用及付款流程</li>
+</FieldSet>
+</form>
+
+<script>
+  //提交函数
+  function CheckSubmit(){
+    //定义 提交提示文字
+    var sConfirm = '您确定已经填写完成，并保存吗？';
+    //提交时，验证必填项
+    if (!JQcheck("JQMust")){
+      return false;
+    }
+    //提交时，提示
+    if (!(confirm(sConfirm)))
+      return false;
+
+    //获取当前表单对象
+    var JqObj = $("form[name=frmDo]");
+    //表单参数设定
+    JqObj.attr({
+      "action":'##HDNet_AppName##/__ExplainModule?Url=<HDPrint Value=#Url#>Save&UsrGid=<HDPrint Value=#UsrGid#>',
+      "target":'_self'
+    });
+    //表单提交
+    JqObj.submit();
+
+    //操作按钮变为不可用
+    $("a[name=btn_1]").each(function(){
+      $(this).prop("disabled",true);
+    });
+    //本函数失效
+    CheckSubmit = function() {return false;}
+  }
+</script>
+
+<script language="javascript" src="##GetWebRootPath(/Scripts/DataInterface.js)##"></script>
+<!--选择审批人调用-->
+<FORM NAME="frmDataInterface_App" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="审批人列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by u.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^代码^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^姓名^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="4^类别^left^100">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.code^用户代码^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.name^用户姓名^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="CallApp">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
+</FORM>

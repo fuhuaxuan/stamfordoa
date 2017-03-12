@@ -1,0 +1,22 @@
+[Rep_BeginLine]
+项目代码
+项目名称
+编号
+楼层
+面积
+建筑面积
+预算
+租赁状态
+[Rep_EndLine]
+<HDLoop>
+[Rep_BeginLine]
+<HDPrint Value=#deptsource# Replace=#None#>
+<HDPrint Value=#DeptName# Replace=#None#>
+<HDPrint Value=#fno# Replace=#None#>
+<HDPrint Value=#floorno# Replace=#None#>
+#NoForm#<HDPrint Value=#farea# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#Jarea# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#fmr# Replace=#DBField2Excel#>
+<HDPrint Value=#fstat# Replace=#None#>
+[Rep_EndLine]
+</HDLoop>
