@@ -28,9 +28,9 @@
 <HDLoop>
 [Rep_BeginLine]
 #NoForm#<HDPrint Value=#Year# Replace=#DBField2Excel#>
-<HDPrint Value=#ComName# Replace=#None#>
+#NoForm#<HDPrint Value=#ComName# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#AcgCode# Replace=#DBField2Excel#>
-<HDPrint Value=#AcgName# Replace=#None#>
+#NoForm#<HDPrint Value=#AcgName# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#LeftFee# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#FYesFee# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#PYesFee# Replace=#DBField2Excel#>

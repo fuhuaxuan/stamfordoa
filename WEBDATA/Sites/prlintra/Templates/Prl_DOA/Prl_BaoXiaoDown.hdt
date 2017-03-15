@@ -11,13 +11,13 @@
 [Rep_EndLine]
 <HDLoop>
 [Rep_BeginLine]
-<HDPrint Value=#ComName# Replace=#None#>
+#NoForm#<HDPrint Value=#ComName# Replace=#DBField2Excel#>
 <HDPrint Value=#AcgCode# Replace=#None#>-<HDPrint Value=#AcgName# Replace=#None#>
-<HDPrint Value=#Num# Replace=#None#></a>
+<HDPrint Value=#Num# Replace=#None#>
 <HDPrint Value=#FStat# Replace=#None#>-<HDPrint Value=#Stat# Replace=#None#>
-<HDPrint Value=#ApplyFee# Replace=#None#>
-<HDPrint Value=#PayMan# Replace=#None#>
-<HDPrint Value=#PayBank# Replace=#None#>
+#NoForm#<HDPrint Value=#ApplyFee# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#PayMan# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#PayBank# Replace=#DBField2Excel#>
 <HDPrint Value=#PayAccount# Replace=#None#>
 #NoForm#<HDPrint Value=#Memo# Replace=#DBField2Excel#>
 [Rep_EndLine]

@@ -8,13 +8,15 @@ declare
   v_TaskGid_T1 varchar2(32);     --开始步骤
   v_TaskGid_TA1 varchar2(32);
   v_TaskGid_TA2 varchar2(32);
+  v_TaskGid_TA3 varchar2(32);
+  v_TaskGid_TB0 varchar2(32);
   v_TaskGid_TB1 varchar2(32);
+  v_TaskGid_TB2 varchar2(32);
   v_TaskGid_TC1 varchar2(32);
   v_TaskGid_TC2 varchar2(32);
   v_TaskGid_TC3 varchar2(32);
-  v_TaskGid_TD1 varchar2(32);
-  v_TaskGid_TD2 varchar2(32);
-  v_TaskGid_TD3 varchar2(32);
+  v_TaskGid_TC4 varchar2(32);
+  v_TaskGid_TD varchar2(32);
   v_TaskGid_TE1 varchar2(32);
   v_TaskGid_TE2 varchar2(32);
   v_TaskGid_T4 varchar2(32);
@@ -27,13 +29,15 @@ BEGIN
   v_TaskGid_T1 := sys_guid();
   v_TaskGid_TA1 := sys_guid();
   v_TaskGid_TA2 := sys_guid();
+  v_TaskGid_TA3 := sys_guid();
+  v_TaskGid_TB0 := sys_guid();
   v_TaskGid_TB1 := sys_guid();
+  v_TaskGid_TB2 := sys_guid();
   v_TaskGid_TC1 := sys_guid();
   v_TaskGid_TC2 := sys_guid();
   v_TaskGid_TC3 := sys_guid();
-  v_TaskGid_TD1 := sys_guid();
-  v_TaskGid_TD2 := sys_guid();
-  v_TaskGid_TD3 := sys_guid();
+  v_TaskGid_TC4 := sys_guid();
+  v_TaskGid_TD := sys_guid();
   v_TaskGid_TE1 := sys_guid();
   v_TaskGid_TE2 := sys_guid();
   v_TaskGid_T4 := sys_guid();
@@ -68,7 +72,7 @@ BEGIN
 
 --4、定义工作流程名称 ，步骤等
   insert into WF_Model(EntGid, ModelGid, Code, Name, STAT, CLASSIFY, VERSION, AP1, AP2)
-  select v_EntGid, v_ModelGid, v_ModelCode, '费用申请单', 3, '博爱', '1.0', 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_ModelCode, '费用单', 3, '博爱', '1.0', 0, 0 from dual;
 
   /*
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
@@ -82,28 +86,34 @@ BEGIN
   select v_EntGid, v_ModelGid, v_TaskGid_TA1, v_ModelCode || '_TA1', '部门总监','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_ModelCode || '_TA2', '财务总监','审批', 1, 0, 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_ModelCode || '_TA2', '财务经理','审批', 1, 0, 0, 0 from dual;
+
+  insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
+  select v_EntGid, v_ModelGid, v_TaskGid_TA3, v_ModelCode || '_TA3', '财务总监','审批', 1, 0, 0, 0 from dual;
+
+  insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB0, v_ModelCode || '_TB0', '院长','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
   select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_ModelCode || '_TB1', '总经理','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, v_ModelCode || '_TB2', '合资公司CFO','审批', 1, 0, 0, 0 from dual;
+
+  insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
   select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_ModelCode || '_TC1', '博爱监事','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_ModelCode || '_TC2', '项目总经理','审批', 1, 0, 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_ModelCode || '_TC2', '博爱董事','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_ModelCode || '_TC3', '合资公司CEO','审批', 1, 0, 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_ModelCode || '_TC3', '鹏瑞利监事','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD1, v_ModelCode || '_TD1', '鹏瑞利监事','审批', 1, 0, 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC4, v_ModelCode || '_TC4', '鹏瑞利董事','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD2, v_ModelCode || '_TD2', '鹏瑞利董事','审批', 1, 0, 0, 0 from dual;
-
-  insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD3, v_ModelCode || '_TD3', '合资公司财务总监','审批', 1, 0, 0, 0 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TD, v_ModelCode || '_TD', '合资公司CEO','审批', 1, 0, 0, 0 from dual;
 
   insert into WF_Task_Define(EntGid, ModelGid, TaskDefGid, Code, Name, Note, OrderValue, IsStart, IsEnd, IsMCF)
   select v_EntGid, v_ModelGid, v_TaskGid_TE1, v_ModelCode || '_TE1', '博爱CEO','审批', 1, 0, 0, 0 from dual;
@@ -122,13 +132,11 @@ BEGIN
 
 --5、定义工作流程步骤执行人
 
-  /*
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid, '**FlowMember**', '**FlowMember**', '@流程参与人@', 1 from dual;
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('Admin_Grp');
-  */
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid_T1, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('all_usr_grp');
@@ -143,7 +151,16 @@ BEGIN
   select v_EntGid, v_ModelGid, v_TaskGid_TA2, '**SpecGid**', '**SpecCode**', '@流程中指定@', 1 from dual;
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
+  select v_EntGid, v_ModelGid, v_TaskGid_TA3, '**SpecGid**', '**SpecCode**', '@流程中指定@', 1 from dual;
+
+  insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB0, '**SpecGid**', '**SpecCode**', '@流程中指定@', 1 from dual;
+
+  insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid_TB1, '**SpecGid**', '**SpecCode**', '@流程中指定@', 1 from dual;
+
+  insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid_TC1, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
@@ -155,13 +172,10 @@ BEGIN
   select v_EntGid, v_ModelGid, v_TaskGid_TC3, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD1, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
+  select v_EntGid, v_ModelGid, v_TaskGid_TC4, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD2, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
-
-  insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD3, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
+  select v_EntGid, v_ModelGid, v_TaskGid_TD, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
 
   insert into WF_Task_Define_Exec(EntGid, ModelGid, TaskDefGid, ExecGidEx, ExecCodeEx, ExecNameEx, OwnerValue)
   select v_EntGid, v_ModelGid, v_TaskGid_TE1, Gid, Code, Name, 1 from v_Usr where EntGid = v_EntGid and lower(Code) = lower('admin_grp');
@@ -193,97 +207,82 @@ BEGIN
   select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_TaskGid_TB1 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_TaskGid_TA3 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TA2, v_TaskGid_T4 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TA3, v_TaskGid_T1 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TA3, v_TaskGid_TB0 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TA3, v_TaskGid_TB1 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB0, v_TaskGid_T1 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB0, v_TaskGid_T4 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_TC1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_TC2 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_TC3 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_TB2 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TB1, v_TaskGid_T4 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, v_TaskGid_T1 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, v_TaskGid_TC1 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, v_TaskGid_TC2 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
+  select v_EntGid, v_ModelGid, v_TaskGid_TB2, v_TaskGid_T4 from dual;
+
+  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_TD1 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_TC3 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_TD2 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_TD3 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_T4 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC1, v_TaskGid_TC4 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_TD1 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_TC3 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_TD2 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_TD3 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_T4 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC2, v_TaskGid_TC4 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_TD1 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_TD from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_TD2 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC4, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_TD3 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TC4, v_TaskGid_TD from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TC3, v_TaskGid_T4 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TD, v_TaskGid_T1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD1, v_TaskGid_T1 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TD, v_TaskGid_TE1 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD1, v_TaskGid_TE1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD1, v_TaskGid_T4 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD2, v_TaskGid_T1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD2, v_TaskGid_TE1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD2, v_TaskGid_T4 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD3, v_TaskGid_T1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD3, v_TaskGid_TE1 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TD3, v_TaskGid_T4 from dual;
+  select v_EntGid, v_ModelGid, v_TaskGid_TD, v_TaskGid_T4 from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TE1, v_TaskGid_T1 from dual;
@@ -296,12 +295,6 @@ BEGIN
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_TE2, v_TaskGid_T4 from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_TE2, v_TaskGid_Tcc from dual;
-
-  insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
-  select v_EntGid, v_ModelGid, v_TaskGid_T4, v_TaskGid_Tcc from dual;
 
   insert into WF_Task_Define_Condition(EntGid, ModelGid, FromTaskDef, ToTaskDef)
   select v_EntGid, v_ModelGid, v_TaskGid_T4, v_TaskGid_Tend from dual;

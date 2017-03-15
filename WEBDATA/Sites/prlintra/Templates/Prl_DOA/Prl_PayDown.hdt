@@ -17,17 +17,17 @@
 <HDLoop>
 [Rep_BeginLine]
 <HDPrint Value=#Num# Replace=#None#>
-<HDPrint Value=#FillUsrName# Replace=#None#>
-<HDPrint Value=#CreateDate# Replace=#None#>
+#NoForm#<HDPrint Value=#FillUsrName# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#CreateDate# Replace=#DBField2Excel#>
 <HDPrint Value=#FlowStat# Replace=#None#>:<HDPrint Value=#StatText# Replace=#None#>
 <HDPrint Value=#AcgCode# Replace=#None#>-<HDPrint Value=#AcgName# Replace=#None#>
-<HDPrint Value=#FeeA# Replace=#None#>
-<HDPrint Value=#FeeB# Replace=#None#>
-<HDPrint Value=#payfee# Replace=#None#>
-<HDPrint Value=#FeeLeft# Replace=#None#>
-<HDPrint Value=#FeeOk# Replace=#None#>
-<HDPrint Value=#payee# Replace=#None#>
-<HDPrint Value=#bank# Replace=#None#>
+#NoForm#<HDPrint Value=#FeeA# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#FeeB# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#payfee# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#FeeLeft# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#FeeOk# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#payee# Replace=#DBField2Excel#>
+#NoForm#<HDPrint Value=#bank# Replace=#DBField2Excel#>
 <HDPrint Value=#account# Replace=#None#>
 #NoForm#<HDPrint Value=#Memo# Replace=#DBField2Excel#>
 [Rep_EndLine]

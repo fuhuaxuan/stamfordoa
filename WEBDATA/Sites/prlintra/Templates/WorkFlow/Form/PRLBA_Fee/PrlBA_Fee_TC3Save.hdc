@@ -10,8 +10,8 @@ SQL1=select 1 from WF_Flow where EntGid = __ENTGID__ and FlowGid = ##FlowGid##
 Remind1=对不起，您指定的流程申请单没有找到<script>alert('对不起，您指定的流程申请单没有找到');window.close()</script>
 
 ;检查判断的Sql语句，查不到结果是报错，从SQL1～SQL5，共可以写5句
-SQL2=select 1 from dual where ##AppAssign## <> '同意' union select 1 from v_WF_Model_App v where v.EntGid = __ENTGID__ and v.ModelGid = ##ModelGid## and lower(v.ModelCode) like '%' || lower('_TD1') and ##AppAssign## = '同意'
-Remind2=对不起，下一步审批人合资公司CFO未设置，请与管理员联系。<script>alert('对不起，下一步审批人合资公司CFO未设置，请与管理员联系。');history.back()</script>
+SQL2=select 1 from dual where ##AppAssign## <> '同意' union select 1 from v_WF_Model_App v where v.EntGid = __ENTGID__ and v.ModelGid = ##ModelGid## and lower(v.ModelCode) like '%' || lower('_TD') and ##AppAssign## = '同意'
+Remind2=对不起，下一步审批人合资公司CEO未设置，请与管理员联系。<script>alert('对不起，下一步审批人合资公司CEO未设置，请与管理员联系。');history.back()</script>
 [Detail]
 ;显示，单条数据的查询，可以用于HDT显示，有select命令。从SQL1～SQL20共支持20条
 ;取出本流程模型信息
@@ -31,7 +31,7 @@ SQL1=select * from WF_^^ModelCode^^ where EntGid = __ENTGID__ AND FlowGid = ##Fl
 
 ;取出邮件
 ;同意并下一步：取出下一步执行人Email
-LoopSQL1=select distinct hr.Email from v_Usr u, hr_emp hr where u.EntGid = __ENTGID__ and u.EntGid = hr.EntGid and u.gid = hr.usrgid and exists (select 1 from v_WF_Model_App o,v_org_usr v where o.EntGid = u.EntGid and o.EntGid = v.EntGid and o.ModelGid = ##ModelGid## and lower(o.Modelcode) like '%' || lower('_td1') and o.AppGid = v.OrgGid and v.UsrGid = u.Gid) and ##AppAssign## = '同意' and ##IsApp## <=1
+LoopSQL1=select distinct hr.Email from v_Usr u, hr_emp hr where u.EntGid = __ENTGID__ and u.EntGid = hr.EntGid and u.gid = hr.usrgid and exists (select 1 from v_WF_Model_App o,v_org_usr v where o.EntGid = u.EntGid and o.EntGid = v.EntGid and o.ModelGid = ##ModelGid## and lower(o.Modelcode) like '%' || lower('_td') and o.AppGid = v.OrgGid and v.UsrGid = u.Gid) and ##AppAssign## = '同意' and ##IsApp## <=1
 LoopHDT1=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_Email.hdt
 LoopVAR1=EmailList
 
@@ -101,4 +101,4 @@ PageKind=0
 ;否决，返回发起人
 WF1=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T1 | T1Gid | and ##AppAssign## = '否决' |^^AppFlowMemo^^)
 
-WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TD1 | Null | and ##AppAssign## = '同意' and ##IsApp## <=1 and ##IsApp## <=1 |^^AppFlowMemo^^)
+WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TD | Null | and ##AppAssign## = '同意' and ##IsApp## <=1 and ##IsApp## <=1 |^^AppFlowMemo^^)

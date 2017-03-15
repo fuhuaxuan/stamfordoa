@@ -107,21 +107,13 @@ HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TC4.hdt
 HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TC4Save.hdc
 HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TC4Save.hdt
 
-[PRLBA_Fee_TD1]
-HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD1.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD1.hdt
+[PRLBA_Fee_TD]
+HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD.hdt
 
-[PRLBA_Fee_TD1Save]
-HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD1Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD1Save.hdt
-
-[PRLBA_Fee_TD2]
-HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD2.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD2.hdt
-
-[PRLBA_Fee_TD2Save]
-HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD2Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TD2Save.hdt
+[PRLBA_Fee_TDSave]
+HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TDSave.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TDSave.hdt
 
 [PRLBA_Fee_TE1]
 HDC=Templates\WorkFlow\Form\PRLBA_Fee\PRLBA_Fee_TE1.hdc
@@ -257,21 +249,13 @@ HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TC4.hdt
 HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TC4Save.hdc
 HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TC4Save.hdt
 
-[PRLBA_Pay_TD1]
-HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD1.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD1.hdt
+[PRLBA_Pay_TD]
+HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD.hdt
 
-[PRLBA_Pay_TD1Save]
-HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD1Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD1Save.hdt
-
-[PRLBA_Pay_TD2]
-HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD2.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD2.hdt
-
-[PRLBA_Pay_TD2Save]
-HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD2Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TD2Save.hdt
+[PRLBA_Pay_TDSave]
+HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TDSave.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TDSave.hdt
 
 [PRLBA_Pay_TE1]
 HDC=Templates\WorkFlow\Form\PRLBA_Pay\PRLBA_Pay_TE1.hdc
@@ -424,21 +408,13 @@ HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TC4.hdt
 HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TC4Save.hdc
 HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TC4Save.hdt
 
-[PRLBA_BaoXiao_TD1]
-HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD1.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD1.hdt
+[PRLBA_BaoXiao_TD]
+HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD.hdt
 
-[PRLBA_BaoXiao_TD1Save]
-HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD1Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD1Save.hdt
-
-[PRLBA_BaoXiao_TD2]
-HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD2.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD2.hdt
-
-[PRLBA_BaoXiao_TD2Save]
-HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD2Save.hdc
-HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TD2Save.hdt
+[PRLBA_BaoXiao_TDSave]
+HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TDSave.hdc
+HDT=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TDSave.hdt
 
 [PRLBA_BaoXiao_TE1]
 HDC=Templates\WorkFlow\Form\PRLBA_BaoXiao\PRLBA_BaoXiao_TE1.hdc

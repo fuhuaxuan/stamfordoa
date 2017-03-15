@@ -23,10 +23,7 @@ Remind2=¶Ô²»Æğ£¬ÏÂÒ»²½ÉóÅúÈË²©°®¶­ÊÂÎ´ÕÒµ½£¬ÇëÓë¹ÜÀíÔ±ÁªÏµ¡£<script>alert('¶Ô²»Æ
 SqlForCondition1=select wm.code ModelCode, wm.Name ModelName,d.Name StepName from wf_Model wm,WF_Task_Define d where wm.EntGid = d.EntGid(+) and wm.EntGid = __ENTGID__ and wm.ModelGid = d.ModelGid(+) and wm.ModelGid = ##ModelGid## and lower(d.code(+)) = replace(lower(##Url##),'save')
 
 ;ÉóÅú±¸×¢
-SQLForCondition2=select ##CurUsrName##||':'||##AppAssign##||' - ' || decode(FeeNum,'','','·ÑÓÃµ¥£º' || FeeNum||'-' || PartNum) || '£»¸¶¿î½ğ¶î£º' || PayFee || '£»¸¶¿î±¸×¢£º' || Memo AppFlowMemo,nvl(areaflag,0) areaflag from wf_^^ModelCode^^ where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid##
-
-;ÅĞ¶ÏÊÇ·ñÈ¡ÏÂÒ»¸ñÉóÅú
-SqlForCondition3=select count(*) IsNext from wf_^^ModelCode^^ where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## and nvl(payfee,0) > nvl(cVALUE,0) and (nvl(cVALUE,0)+nvl(dVALUE,0)+nvl(eVALUE,0)) > 0
+SQLForCondition2=select ##CurUsrName##||':'||##AppAssign##||' - ' || decode(FeeNum,'','','·ÑÓÃµ¥£º' || FeeNum||'-' || PartNum) || '£»¸¶¿î½ğ¶î£º' || PayFee || '£»¸¶¿î±¸×¢£º' || Memo AppFlowMemo,nvl(areaflag,0) areaflag,nvl(payfee,0)  ApplyFee from wf_^^ModelCode^^ where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid##
 
 SqlForCondition4=select u.gid TC2Gid from v_usr u,PRL_AcgSet s where u.entgid = __ENTGID__ and u.entgid = s.entgid and u.gid = s.AUsrGid and s.ComGid = ##ComGid## and lower(s.AcgCode) = lower(##AcgCode##)
 
@@ -35,7 +32,7 @@ SQL1=select f.*,decode(f.isend,10,'ÊÇ','·ñ') IsEndText from WF_^^ModelCode^^ f w
 
 ;È¡³öÓÊ¼ş
 ;Í¬Òâ²¢ÏÂÒ»²½£ºÈ¡³öÏÂÒ»²½Ö´ĞĞÈËEmail
-LoopSQL1=select distinct hr.Email from v_Usr u, hr_emp hr where u.EntGid = __ENTGID__ and u.EntGid = hr.EntGid and u.gid = hr.usrgid and exists (select 1 from v_WF_Model_App o,v_org_usr v where o.EntGid = u.EntGid and o.EntGid = v.EntGid and o.ModelGid = ##ModelGid## and replace(lower(o.Modelcode),lower(##ModelCode##),'') in ('_tc1') and o.AppGid = v.OrgGid and v.UsrGid = u.Gid) and ##AppAssign## = 'Í¬Òâ' and ##IsNext## > 0 union select hr.Email from hr_emp hr where hr.entgid = __ENTGID__ and hr.usrgid = ##TC2Gid## and ##AppAssign## = 'Í¬Òâ' and ##IsNext## > 0 union select hr.Email from hr_emp hr where hr.entgid = __ENTGID__ and hr.usrgid = ##T1Gid## and ##AppAssign## = 'Í¬Òâ' and ##IsNext## <= 0
+LoopSQL1=select distinct hr.Email from v_Usr u, hr_emp hr where u.EntGid = __ENTGID__ and u.EntGid = hr.EntGid and u.gid = hr.usrgid and exists (select 1 from v_WF_Model_App o,v_org_usr v where o.EntGid = u.EntGid and o.EntGid = v.EntGid and o.ModelGid = ##ModelGid## and replace(lower(o.Modelcode),lower(##ModelCode##),'') in ('_tc1') and o.AppGid = v.OrgGid and v.UsrGid = u.Gid) and ##AppAssign## = 'Í¬Òâ'
 LoopHDT1=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_Email.hdt
 LoopVAR1=EmailList
 
@@ -45,7 +42,7 @@ LoopVAR1=EmailList
 Sql1=update wf_^^ModelCode^^ set (LastUpdDate,Stat) = (select sysdate,##AppAssign## from dual) where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
 ;²åÈë±¾Á÷³ÌÖĞÉóÅúÈË¶şĞÅÏ¢
-SQL2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,26,##AppAssign##, ##note##,sysdate from dual
+SQL2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,90,##AppAssign##, ##note##,sysdate from dual
 
 [AddtionalSQLUseWhere]
 ;ÏÔÊ¾£¬µ¥ÌõÊı¾İµÄ²éÑ¯£¬¿ÉÒÔÓÃÓÚHDTÏÔÊ¾£¬ÓĞselectÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ£¬Í¬Ê±»áÊ¹ÓÃÉÏÃæµÄ[where]ÖĞµÄsqlÓï¾ä
@@ -102,9 +99,6 @@ PageKind=0
 ;·ñ¾ö£¬·µ»Ø·¢ÆğÈË
 WF1=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T1 | T1Gid | and ##AppAssign## = '·ñ¾ö' |^^AppFlowMemo^^)
 
-WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TC1 | Null | and ##AppAssign## = 'Í¬Òâ' and ##IsNext## > 0 |^^AppFlowMemo^^)
+WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TC1 | Null | and ##AppAssign## = 'Í¬Òâ' |^^AppFlowMemo^^)
 
-WF3=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TC2 | TC2Gid | and ##AppAssign## = 'Í¬Òâ' and ##IsNext## > 0 |^^AppFlowMemo^^)
-
-;Í¬Òâ£¬Á÷×ªµ½È·ÈÏ²¢³­ËÍ
-WF5=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T4 | null | and ##AppAssign## = 'Í¬Òâ' and ##IsNext## <= 0 |^^AppFlowMemo^^)
+WF3=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TC2 | TC2Gid | and ##AppAssign## = 'Í¬Òâ' |^^AppFlowMemo^^)
