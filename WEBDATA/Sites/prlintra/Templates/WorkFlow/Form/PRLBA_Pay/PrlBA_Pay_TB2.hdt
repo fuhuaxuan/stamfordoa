@@ -16,6 +16,8 @@
   <input type="text" style="display:none" name="FillUsrDeptGid" value="<HDPrint Value=#FillUsrDeptGid# Replace=#DBField2Input#>">
   <!--意见标志：同意；否决-->
   <input type="text" style="display:none" name="AppAssign" value="">
+  <input type="text" style="display:none" name="ComGid" value="<HDPrint Value=#COMPANYGID# Replace=#DBField2Input#>">
+  <input type="text" style="display:none" name="AcgCode" value="<HDPrint Value=#AcgCode# Replace=#DBField2Input#>">
 
 <h3 class="TitleBar">
   <a href="##HDNet_AppName##/WFFlowPage?Url=<HDPrint Value=#ModelCode#>&UsrGid=<HDPrint Value=#UsrGid#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid#>" target="_blank"><HDPrint Value=#ModelName#></a>->
@@ -82,7 +84,7 @@
     if (!confirm(sConfirm)){
       return false;
     }
-    //获取当前表单对象 
+    //获取当前表单对象
     var JqObj = $("form[name=frmDo]");
     //表单参数设定
     JqObj.attr({

@@ -15,8 +15,7 @@
     window.open(' ', '_self', ' ');
   }
   var AppAssign = '<HDPrint Value=#AppAssign# Replace=#DBField2Js#>';
-  var IsApp = '<HDPrint Value=#IsApp# Replace=#DBField2Js#>';
-  if (AppAssign == '同意' && IsApp <=1 ){
+  if (AppAssign == '同意' ){
     frmMail.submit();
   }
   else{

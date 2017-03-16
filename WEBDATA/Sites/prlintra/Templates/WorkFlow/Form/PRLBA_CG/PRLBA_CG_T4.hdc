@@ -6,17 +6,21 @@ LIMITDesc1=StringSize[,0]
 LIMITRemind1=对不起，您未指定流程信息！请从正确的路径进入
 
 ;判断传入FlowGid 是否存在
-SQL1=select 1 from WF_Flow where EntGid = __ENTGID__ and FlowGid = ##FlowGid##
+SQL1=select 1 from WF_Flow wf where wf.EntGid = __ENTGID__ and wf.FlowGid = ##FlowGid##
 Remind1=对不起，您指定的流程申请单没有找到<script>alert('对不起，您指定的流程申请单没有找到');window.close()</script>
 
 [Detail]
 ;显示，单条数据的查询，可以用于HDT显示，有select命令。从SQL1～SQL20共支持20条
 ;取出本流程模型信息
-SqlForCondition1=select wm.code ModelCode, wm.Name ModelName,d.Name StepName from wf_Model wm,WF_Task_Define d where wm.EntGid = d.EntGid(+) and wm.EntGid = __ENTGID__ and wm.ModelGid = d.ModelGid(+) and wm.ModelGid = ##ModelGid## and lower(d.code(+)) = replace(lower(##Url##),'save')
+SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName,d.Name StepName from wf_Model wm,WF_Task_Define d where wm.EntGid = d.EntGid(+) and wm.EntGid = __ENTGID__ and wm.ModelGid = d.ModelGid(+) and wm.ModelGid = ##ModelGid## and lower(d.code(+)) = replace(lower(##Url##),'save')
 
 ;取出本流程主表信息
-Sql1=select f.*,a.code AcgCode from wf_^^ModelCode^^ f,prl_acg a where f.EntGid = __ENTGID__ and f.FlowGid = ##FlowGid## and f.Entgid = a.EntGid(+) and f.acgtwogid = a.gid(+)
+Sql1=select f.* from WF_^^ModelCode^^ f where f.EntGid = __ENTGID__ and f.FlowGid = ##FlowGid##
 
+;显示审批页面通用模板（放在最后）
+LoopSQL20=select * from dual
+LoopHDT20=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_TAppHtml.hdt
+LoopVAR20=TAppHtml
 [AddtionalSQL]
 ;操作，没有返回的结果，是在数据库中执行，有Insert, Update, Delete命令。从SQL1～SQL20共支持20条
 SQL1=
