@@ -84,6 +84,21 @@
     <td><input name="txtFlowNote" maxlength=100  class="JQText"></td>
   </tr>
   <tr>
+    <td>审批状态</td>
+    <td>
+      <select name="selAppStat" class="JQText">
+      <option value="">--全部--</option>
+      <option value="='同意'" style="color:blue">同意</option>
+      <option value="='否决'" style="color:red">否决</option>
+      <option value="not in ('同意','否决')">其他</option>
+      </select>
+    </td>
+    <td>审批时间从</td>
+    <td><input name="txtAppDate1" maxlength="16" class="JQDate"></td>
+    <td>到</td>
+    <td><input name="txtAppDate2" maxlength="16" class="JQDate"></td>
+  </tr>
+  <tr>
     <TD colspan=6><a href="javascript:ShowPro();void(0)"><FONT class="IconDown" id="idShow">　</FONT> 显示说明信息</a></TD>
     <td colspan=2 align="right">
       <INPUT TYPE="hidden" name="NotFirst" value="1">
@@ -119,6 +134,9 @@
   document.all.txtFlowNote.value = '<HDPrint Value=#txtFlowNote# Replace=#DBField2Js#>';
   document.all.selModelName.value = '<HDPrint Value=#selModelName# Replace=#DBField2Js#>';
   document.all.selModelType.value = '<HDPrint Value=#selModelType# Replace=#DBField2Js#>';
+  document.all.selAppStat.value = '<HDPrint Value=#selAppStat# Replace=#DBField2Js#>';
+  document.all.txtAppDate1.value = '<HDPrint Value=#txtAppDate1# Replace=#DBField2Js#>';
+  document.all.txtAppDate2.value = '<HDPrint Value=#txtAppDate2# Replace=#DBField2Js#>';
 
   //说明的显示与隐藏
   function ShowPro() {

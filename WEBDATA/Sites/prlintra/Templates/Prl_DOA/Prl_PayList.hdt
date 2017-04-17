@@ -159,7 +159,8 @@
   <col style="padding-left:4px;">
   <col style="padding-left:4px;">
   <tr class="listtr">
-    <td style="cursor:hand;" JQAsc="" JQColumn="f.Num">单号</td>
+    <td style="cursor:hand;" JQAsc="" JQColumn="f.Num">付款单号</td>
+    <td style="cursor:hand;" JQAsc="" JQColumn="f.FeeNum">费用单号</td>
     <td style="cursor:hand;" JQAsc="" JQColumn="f.FillUsrName">发起人</td>
     <td style="cursor:hand;" JQAsc="" JQColumn="f.CreateDate">发起日期</td>
     <td style="cursor:hand;" JQAsc="" JQColumn="f.Stat">状态</td>
@@ -177,6 +178,7 @@
   <HDLoop>
   <tr class="listtd" onmouseover="this.className='listtdfocus';" onmouseout="this.className='listtd'">
     <td nowrap><a href="##HDNet_AppName##/WFFlowPage?Url=PrlBA_Pay&UsrGid=<HDPrint Value=#UsrGid#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid#>" target="_blank"><HDPrint Value=#Num#></a></td>
+    <td nowrap><HDPrint Value=#FeeNum#></td>
     <td nowrap><HDPrint Value=#FillUsrName#></td>
     <td nowrap><HDPrint Value=#CreateDate#></td>
     <td nowrap><HDPrint Value=#FlowStat#>:<HDPrint Value=#StatText#></td>

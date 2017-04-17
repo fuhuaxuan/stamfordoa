@@ -2,6 +2,7 @@
 公司名称
 项目编号
 项目名称
+单号
 状态
 金额
 剩余预算
@@ -24,6 +25,7 @@
 #NoForm#<HDPrint Value=#ComName# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#AcgCode# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#AcgName# Replace=#DBField2Excel#>
+<HDPrint Value=#Num# Replace=#None#>
 #NoForm#<HDPrint Value=#FStat# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#ApplyFee# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#LEFTBUDGUTFEE# Replace=#DBField2Excel#>

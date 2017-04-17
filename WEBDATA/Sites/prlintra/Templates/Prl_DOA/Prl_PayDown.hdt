@@ -1,5 +1,6 @@
 [Rep_BeginLine]
-单号
+付款单号
+费用单号
 发起人
 发起日期
 状态
@@ -17,6 +18,7 @@
 <HDLoop>
 [Rep_BeginLine]
 <HDPrint Value=#Num# Replace=#None#>
+<HDPrint Value=#FeeNum# Replace=#None#>
 #NoForm#<HDPrint Value=#FillUsrName# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#CreateDate# Replace=#DBField2Excel#>
 <HDPrint Value=#FlowStat# Replace=#None#>:<HDPrint Value=#StatText# Replace=#None#>

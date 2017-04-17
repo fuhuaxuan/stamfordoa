@@ -6,25 +6,15 @@ DEFAULTValue1=[date],-30
 [Master]
 SQL=select a.flowgid, a.modelgid, a.createdate, a.stat, a.finishdate, a.creatercode, a.creatername, trim(a.flownote) flownote, to_char(a.createdate, 'yyyy.mm.dd hh24:mi:ss') flowcreatedate, to_char(a.finishdate, 'yyyy.mm.dd hh24:mi:ss') flowfinishdate, b.code modelcode, b.name modelname, decode(a.stat, '0', '未执行', '1', '待执行', '2', '执行中', '3', '<FONT COLOR="blue">已完成</FONT>', '4', '<font color="gray">已停止</font>', '5', '<FONT COLOR="red">已作废</FONT>', '6', '<FONT COLOR="red">已超时</FONT>') flowstat,decode(o.stat,'否决','<FONT COLOR="red">否决</FONT>',o.stat) FStat from wf_flow a, wf_model b, v_Order o where a.entgid = __ENTGID__ and b.entgid = __ENTGID__ and a.modelgid = b.modelgid and exists (select 1 from v_wf_task where entgid = __ENTGID__ and execgid = __USRGID__ and stat in (0, 1, 2, 3, 4, 5) and flowgid = a.flowgid) and a.entgid = o.entgid(+) and a.flowgid = o.flowgid(+)
 
-;and '^^NotFirst^^' = '1' 
-
 Count=select count(1) from wf_flow a, wf_model b, v_Order o where a.entgid = __ENTGID__ and b.entgid = __ENTGID__ and a.modelgid = b.modelgid and exists (select 1 from v_wf_task where entgid = __ENTGID__ and execgid = __USRGID__ and stat in (0, 1, 2, 3, 4, 5) and flowgid = a.flowgid) and a.entgid = o.entgid(+) and a.flowgid = o.flowgid(+)
-
-;and '^^NotFirst^^' = '1' 
-
 
 [Detail]
 ;工作流程模型名称列表
-;LoopSQL1=select  Name,ModelGid,stat, decode(stat,0,'(未)',2,'(停)',5,'(废)') stattext from WF_Model where entgid=__ENTGID__ and ModelGid in (select distinct ModelGid from v_WF_Task where EntGid = __ENTGID__ and ExecGid = __USRGID__ and Stat in (0, 1, 2, 3, 4, 5) union select '' from dual) order by Name, Code
 LoopSql1=select classify || '-' || name name, modelgid, stat, decode(stat, 0, '(未)', 2, '(停)', 5, '(废)') stattext from wf_model w where w.entgid = __ENTGID__ and w.modelgid in (select modelgid from wf_task where entgid = __ENTGID__ and execgid = __USRGID__ union select modelgid from wf_task_history where entgid = __ENTGID__ and execgid = __USRGID__ ) order by classify, name 
 LoopHDT1=Templates\WorkFlow\WF_Model_Option.hdt
 LoopVAR1=WF_Model_Option
 
-
-
-
 ;工作流程分类名称列表
-;LoopSQL2=select classify Name,classify ModelGid from  (select distinct classify from WF_Model where entgid=__ENTGID__ ) x order by length(x.classify) 
 LoopSql2=select distinct classify name, classify modelgid from WF_Model where entgid=__ENTGID__ order by length(name)
 LoopHDT2=Templates\WorkFlow\WF_Model_Option.hdt
 LoopVAR2=WF_Model_Type
@@ -42,6 +32,9 @@ LoopVAR2=WF_Model_Type
 640= and b.Name like '%' || ##selModelName## || '%'
 700= and a.flowgid in (select FlowGid from v_WF_task where EntGid = __ENTGID__ and ExecCode like lower('%' || ##txtExecInfo## || '%') or ExecName like lower('%' || ##txtExecInfo## || '%'))
 
+800= and exists (select 1 from v_prl_app v where v.entgid = a.entgid and v.flowgid = a.flowgid and v.appgid = __USRGID__ and v.appassign ^^selAppStat^^)
+801= and exists (select 1 from v_prl_app v where v.entgid = a.entgid and v.flowgid = a.flowgid and v.appgid = __USRGID__ and v.appdate >= to_date(##txtAppDate1##, 'yyyy.mm.dd hh24:mi'))
+802= and exists (select 1 from v_prl_app v where v.entgid = a.entgid and v.flowgid = a.flowgid and v.appgid = __USRGID__ and v.appdate <= to_date(##txtAppDate2##, 'yyyy.mm.dd hh24:mi'))
 
 
 [DefaultWhere]
