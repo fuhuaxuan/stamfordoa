@@ -102,4 +102,4 @@ PageKind=0
 ;否决，返回发起人
 WF1=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T1 | T1Gid | and ##AppAssign## = '否决' |^^AppFlowMemo^^)
 
-WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TD | Null | and ##AppAssign## = '同意' and ##IsApp## <=1  and ##IsApp## <=1 |^^AppFlowMemo^^)
+WF2=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_TD | Null | and ##AppAssign## = '同意' and ##IsApp## <=1  |^^AppFlowMemo^^)

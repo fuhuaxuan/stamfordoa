@@ -14,6 +14,7 @@
   <!--发起人UsrGid-->
   <INPUT type="text" style="display:none" name="T1Gid" value="<HDPrint Value=#FillUsrGid# Replace=#DBField2Input#>">
   <input type="text" style="display:none" name="FillUsrDeptGid" value="<HDPrint Value=#FillUsrDeptGid# Replace=#DBField2Input#>">
+  <input type="text" style="display:none" name="ParentDeptCode" value="<HDPrint Value=#ParentDeptCode# Replace=#DBField2Input#>">
   <!--意见标志：同意；否决-->
   <input type="text" style="display:none" name="AppAssign" value="">
 
@@ -82,7 +83,7 @@
     if (!confirm(sConfirm)){
       return false;
     }
-    //获取当前表单对象 
+    //获取当前表单对象
     var JqObj = $("form[name=frmDo]");
     //表单参数设定
     JqObj.attr({

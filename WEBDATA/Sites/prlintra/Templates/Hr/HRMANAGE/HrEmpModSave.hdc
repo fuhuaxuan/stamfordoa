@@ -1,0 +1,62 @@
+[Permission]
+SQL1=select 1  from hr_rt h, v_org_usr v, dept d1, dept d2  where v.usrgid = __usrgid__ and h.usrgidex = v.orggid and h.rtid =2 and h.dept = d1.gid and d2.code1 like d1.code1 || decode(h.atype, 0, '', 1, '_%', 2, '%') and d2.gid = (select deptgid from hr_emp where gid = ##Gid##) 
+Remind1=对不起，您没有修改该员工详细资料的权限!<SCRIPT LANGUAGE="JavaScript">alert('对不起，您没有修改该员工详细资料的权限!'); window.close();</SCRIPT>
+
+SQL2=select 1 from hr_emp where entgid=__ENTGID__ and gid='^^GID^^'
+Remind2=您要修改的员工信息不存在！<SCRIPT LANGUAGE="JavaScript">alert('您要修改的员工信息不存在！'); window.close();</SCRIPT>
+
+SQL6=select 1 from hr_emp where entgid=__ENTGID__ and gid <> '^^GID^^' and stat in (0,1) and lower(code) = lower('^^CODE^^')
+Remind6=您要修改的员工的工号信息已存在，不能修改！<SCRIPT LANGUAGE="JavaScript">alert('您要修改的员工的工号信息已存在，不能修改！'); window.close();</SCRIPT>
+
+
+LIMIT2=STATURE
+LIMITDesc2=not isInt
+LIMITRemind2=身高不是整数！
+
+LIMIT6=GID
+LIMITDesc6=StringSize[,0]
+LIMITRemind6=没有通过正常途径使用本功能！
+
+[Master]
+
+
+[Detail]
+SQLForCondition1=select code,name OLDEMPNAME,USRGID EMPUSRGID from hr_emp where EntGid = __ENTGID__ and gid = ##GID##
+
+
+[Where]
+
+
+
+
+[DefaultWhere]
+DefaultWhere=
+
+[OrderBy]
+
+
+[DefaultOrderBy]
+DefaultOrderBy=
+
+[GroupBy]
+
+[AddtionalSQL]
+SQL1=update hr_emp set NAME=##NAME##, SEX=##SEX##, POSITIONLEVEL=##POSITIONLEVEL##, POSITION=##POSITION##, WORKADDRESS=##WORKADDRESS##, SHIFT=##SHIFT##, PHONE=##PHONE##, BP=##BP##, MOBILEPHONE=##MOBILEPHONE##, EMAIL=##EMAIL##, IDCARD = ##IDCARD##, DRIVECARD = ##DRIVECARD##, PASSPORT = ##PASSPORT##, FILECODE = ##FILECODE##, DOCADDRESS = ##DOCADDRESS##, DOCTIME = to_date(##DOCTIME##,'yyyy.mm.dd'), STATURE = ##STATURE##, MARRIEDDATE = to_date(##MARRIEDDATE##,'yyyy.mm.dd'), ENAME = ##ENAME##, OLDNAME = ##OLDNAME##, HOMETOWN = ##HOMETOWN##, HOMEPLACE = ##HOMEPLACE##, BIRTHDAY = to_date(##BIRTHDAY##,'yyyy.mm.dd'), HEALTH = ##HEALTH##, POLITICAL = ##POLITICAL##, RTDAY = to_date(##RTDAY##,'yyyy.mm.dd'), RDDAY = to_date(##RDDAY##,'yyyy.mm.dd'), NATION = ##NATION##, LIVEADDRESS = ##LIVEADDRESS##,ZIPCODE=##ZIPCODE##,PERSONALTEL=##PERSONALTEL##,DOMICILE=##DOMICILE##,CURHK=##CURHK##,CURHKZIPCODE=##CURHKZIPCODE##,HOBBY=##HOBBY##,ISMARRIED=##ISMARRIED##, EDUCATION = ##EDUCATION##, SCHOOL=##SCHOOL##, MAJOR=##MAJOR##, GRDATE=to_date(##GRDATE##,'yyyy.mm.dd'), LANGUAGE=##LANGUAGE##, HOWINLANGUAGE=##HOWINLANGUAGE##,COMPUTER=##COMPUTER##,ZHICHENG=##ZHICHENG##,EVALUATE=##EVALUATE##,EXPECT=##EXPECT##, OLDORG=##OLDORG##,OLDORGADDRESS=##OLDORGADDRESS##, OLDORGTEL=##OLDORGTEL##, OLDORGDATE=to_date(##OLDORGDATE##,'yyyy.mm.dd'), WORKRELATION=##WORKRELATION##,WORKSTARTDATE=to_date(##WORKSTARTDATE##,'yyyy.mm.dd'), JOINDATE=to_date(##JOINDATE##,'yyyy.mm.dd'), ZHUANZHENGDATE=to_date(##ZHUANZHENGDATE##,'yyyy.mm.dd'), LEAVEDATE=to_date(##LEAVEDATE##,'yyyy.mm.dd'), LEAVEREASON=##LEAVEREASON##, PROBATION=##PROBATION##, SALARYCARD=##SALARYCARD##, HEALTHCARD=##HEALTHCARD##, OLDAGECARD=##OLDAGECARD##, PUBLICCARD=##PUBLICCARD##, ACCOUNTCARD=##ACCOUNTCARD##, SALARY=##SALARY##, CURRENCY=##CURRENCY##, PAYTYPE=##PAYTYPE##,TAX=##TAX##,VACATION=##VACATION##, FULI=##FULI##,FULI_STARTDATE=to_date(##FULI_STARTDATE##,'yyyy.mm.dd'),COMPANY_NAME=##COMPANY_NAME##,COMPANY_SHEBAO=##COMPANY_SHEBAO##,COMPANY_NONGBAO=##COMPANY_NONGBAO##,COMPANY_XUHAO=##COMPANY_XUHAO##,FULI_ENDDATE=to_date(##FULI_ENDDATE##,'yyyy.mm.dd'),JOINMETHOD=##JOINMETHOD##, RCMNAME=##RCMNAME##, RCMTEL=##RCMTEL##,RCMRLT=##RCMRLT##,URGENCY=##URGENCY##,MEMO=##MEMO## where EntGid = __ENTGID__ and gid = ##GID##
+
+
+SQL2=update usr set name = ##NAME## where EntGid = __ENTGID__ and gid = ##EMPUSRGID## AND ##NAME## <> ##OLDEMPNAME##
+
+AttachSqlDel=update hr_emp set Photo = '' where EntGid=##EntGid## and Gid=##GID##
+AttachSqlAdd1=update hr_emp set Photo = @@FilePath@@ where EntGid=##EntGid## and Gid=##GID##
+
+[Title]
+Text1=人力资源员工信息修改保存
+
+log=成功修改员工[^^CODE^^]信息.
+
+ChangePage=0
+PageKind=0
+
+AttachCtrl=Photo
+AttachPath=Photo
+

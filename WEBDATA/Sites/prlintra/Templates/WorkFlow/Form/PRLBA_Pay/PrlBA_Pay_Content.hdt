@@ -244,7 +244,7 @@
     else{
       $("[JQ$=no_2]").show();
       var sCode = '<HDPrint Value=#AcgTwoName# Replace=#DBField2Js#>';
-      if(sCode.indexOf('9.01')>-1){
+      if(sCode.indexOf('9.01')>-1||sCode.indexOf('9.02')>-1){
         $("[JQ1=ACG9]").hide();
       }
       else{

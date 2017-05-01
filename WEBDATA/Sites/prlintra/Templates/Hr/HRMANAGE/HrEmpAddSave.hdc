@@ -1,0 +1,63 @@
+[Permission]
+SQL1=select 1  from hr_rt h, v_org_usr v, dept d1, dept d2  where v.usrgid = __usrgid__ and h.usrgidex = v.orggid and h.rtid = 2 and h.dept = d1.gid and d2.code1 like d1.code1 || decode(h.atype, 0, '', 1, '_%', 2, '%') and d2.gid = ##DEPTGID##
+
+
+Remind1=对不起，您没有添加该部门员工资料的权限！<SCRIPT LANGUAGE="JavaScript">alert('对不起，您没有添加该部门员工资料的权限！'); window.close();</SCRIPT>
+
+SQL6=select 1 from hr_emp where entgid=__ENTGID__ and lower(code) = lower('^^CODE^^') and stat in (0,1)
+Remind6=您要添加的员工的员工工号已存在！<SCRIPT LANGUAGE="JavaScript">alert('您要添加的员工的员工工号已存在！'); history.back();</SCRIPT>
+
+LIMIT1=CODE
+LIMITDesc1=not CheckCodeValid
+LIMITRemind1=用户代码仅能包含字母、数字、下划线，请重新填写！
+
+LIMIT2=STATURE
+LIMITDesc2=not isInt
+LIMITRemind2=身高不是整数！
+
+LIMIT3=DEPTGID
+LIMITDesc3=StringSize[,0]
+LIMITRemind3=请选择用户所在部门！
+
+LIMIT4=STAT
+LIMITDesc4=StringSize[,0]
+LIMITRemind4=请选择用户状态！
+
+[Master]
+
+
+[Detail]
+SQLForCondition1=select ##NewGid## Gid from dual
+
+
+[DefaultWhere]
+DefaultWhere=
+
+[OrderBy]
+
+
+[DefaultOrderBy]
+DefaultOrderBy=
+
+[GroupBy]
+
+[AddtionalSQL]
+SQL1=insert into hr_emp(ENTGID, GID, CODE, NAME, DEPTGID, SEX, POSITIONLEVEL, POSITION, WORKADDRESS, SHIFT, PHONE, BP, MOBILEPHONE, EMAIL, STAT) values(__ENTGID__, ##NewGid##, ##CODE##, ##NAME##, ##DEPTGID##, ##SEX##, ##POSITIONLEVEL##, ##POSITION##, ##WORKADDRESS##, ##SHIFT##, ##PHONE##, ##BP##, ##MOBILEPHONE##, ##EMAIL##, ##STAT##)
+
+SQL2= update hr_emp set IDCARD = ##IDCARD##, DRIVECARD = ##DRIVECARD##, PASSPORT = ##PASSPORT##, FILECODE = ##FILECODE##, DOCADDRESS = ##DOCADDRESS##, DOCTIME = to_date(##DOCTIME##,'yyyy.mm.dd'), STATURE =  ##STATURE##, MARRIEDDATE = to_date(##MARRIEDDATE##,'yyyy.mm.dd'), ENAME=##ENAME##, OLDNAME=##OLDNAME##, HOMETOWN=##HOMETOWN##, HOMEPLACE = ##HOMEPLACE##, BIRTHDAY = to_date(##BIRTHDAY##,'yyyy.mm.dd'), HEALTH = ##HEALTH##, POLITICAL = ##POLITICAL##, RTDAY = to_date(##RTDAY##,'yyyy.mm.dd'), RDDAY = to_date(##RDDAY##,'yyyy.mm.dd'), NATION = ##NATION##, LIVEADDRESS = ##LIVEADDRESS##, ZIPCODE = ##ZIPCODE##, PERSONALTEL = ##PERSONALTEL##, DOMICILE = ##DOMICILE##, CURHK = ##CURHK##, CURHKZIPCODE=##CURHKZIPCODE##, HOBBY=##HOBBY##, ISMARRIED=##ISMARRIED##, EDUCATION=##EDUCATION##, SCHOOL=##SCHOOL##, MAJOR=##MAJOR##, GRDATE=to_date(##GRDATE##,'yyyy.mm.dd'), LANGUAGE=##LANGUAGE##, HOWINLANGUAGE=##HOWINLANGUAGE##, COMPUTER=##COMPUTER##, ZHICHENG=##ZHICHENG##, EVALUATE=##EVALUATE##, EXPECT=##EXPECT##, OLDORG=##OLDORG##, OLDORGADDRESS=##OLDORGADDRESS##, OLDORGTEL=##OLDORGTEL##, OLDORGDATE=to_date(##OLDORGDATE##,'yyyy.mm.dd'), WORKRELATION=##WORKRELATION##, WORKSTARTDATE=to_date(##WORKSTARTDATE##,'yyyy.mm.dd'), JOINDATE=to_date(##JOINDATE##,'yyyy.mm.dd'), ZHUANZHENGDATE = to_date(##ZHUANZHENGDATE##,'yyyy.mm.dd'), LEAVEDATE = to_date(##LEAVEDATE##,'yyyy.mm.dd'), LEAVEREASON=##LEAVEREASON##, PROBATION=##PROBATION##, SALARYCARD=##SALARYCARD##, HEALTHCARD=##HEALTHCARD##, OLDAGECARD=##OLDAGECARD##, PUBLICCARD=##PUBLICCARD##, ACCOUNTCARD=##ACCOUNTCARD##, SALARY=##SALARY##, CURRENCY=##CURRENCY##, PAYTYPE=##PAYTYPE##, TAX=##TAX##, VACATION=##VACATION##, FULI=##FULI##, FULI_STARTDATE=to_date(##FULI_STARTDATE##,'yyyy.mm.dd'), COMPANY_NAME=##COMPANY_NAME##, COMPANY_SHEBAO=##COMPANY_SHEBAO##, COMPANY_NONGBAO=##COMPANY_NONGBAO##, COMPANY_XUHAO=##COMPANY_XUHAO##, FULI_ENDDATE=to_date(##FULI_ENDDATE##,'yyyy.mm.dd'), JOINMETHOD=##JOINMETHOD##, RCMNAME=##RCMNAME##, RCMTEL=##RCMTEL##,RCMRLT=##RCMRLT##, URGENCY=##URGENCY##, MEMO=##MEMO## where  entgid = __ENTGID__ and gid = ##NewGid##
+
+AttachSqlAdd1=update hr_emp set Photo = @@FilePath@@ where EntGid=##EntGid## and Gid=##NewGid##
+
+[Title]
+Text1=人力资源员工信息新增保存
+
+log=成功新增员工^^Name^^[^^Code^^]信息
+
+ChangePage=0
+PageKind=0
+
+
+AttachCtrl=Photo
+AttachPath=Photo
+
+
