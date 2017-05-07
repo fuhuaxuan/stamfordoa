@@ -41,7 +41,7 @@ LoopVAR1=EmailList
 Sql1=update wf_^^ModelCode^^ set (LastUpdDate,Stat) = (select sysdate,##AppAssign## from dual) where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
 ;插入本流程中审批人二信息
-SQL2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,70,##AppAssign##, ##note##,sysdate from dual
+SQL2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppOrder,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,50,50,##AppAssign##, ##note##,sysdate from dual
 
 ;停用同级别步骤
 SQL3=update wf_task t set t.stat = 4 where t.EntGid = __ENTGID__ and t.FlowGid = ##FlowGid## and replace(lower(t.code),lower(##ModelCode##),'') in ('_tc4') and t.stat = 1 and ((##AppAssign## = '同意' and ##IsApp## <=1) or ##AppAssign## = '否决')

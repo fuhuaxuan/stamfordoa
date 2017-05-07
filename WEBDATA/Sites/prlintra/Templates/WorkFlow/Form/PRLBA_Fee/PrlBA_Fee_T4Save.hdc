@@ -16,22 +16,13 @@ SqlForCondition1=select wm.code ModelCode, wm.Name ModelName,d.Name StepName fro
 
 SQLForCondition2=select ##CurUsrName##||':'||##AppAssign##||' - 申请金额：' || Askfee || '；申请目的：' || Target AppFlowMemo from wf_^^ModelCode^^ where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
-;取出邮件内容
-SQL1=select * from WF_^^ModelCode^^ where EntGid = __ENTGID__ AND FlowGid = ##FlowGid##
-
-;取出邮件
-;同意并下一步：取出下一步执行人Email
-LoopSQL1=select v.Email from v_Post v where v.EntGid = __ENTGID__ and v.deptGid = ##FillUsrDeptGid## and v.atype in (30)
-LoopHDT1=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_Email.hdt
-LoopVAR1=EmailList
-
 [AddtionalSQL]
 ;操作，没有返回的结果，是在数据库中执行，有Insert, Update, Delete命令。从SQL1～SQL20共支持20条
 ;更新本流程中主表信息
 Sql1=update wf_^^ModelCode^^ set (LastUpdDate,Stat,confirmdate,confirmfee,Nconfirmfee) = (select sysdate,'已完成',sysdate,##confirmfee##,##Nconfirmfee## from dual) where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
 ;插入本流程各级审批人信息
-Sql2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__, 120,##AppAssign##,##note##,sysdate from dual
+Sql2=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppOrder,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,75,75,##AppAssign##,##note##,sysdate from dual
 
 ;更新项目的预算费用
 SQL4=update PRL_ACG_COMPANY o set (LeftBudgutFee,OpUsrGid,OpUsrCode,OpUsrName,OpDate,OpMemo,OpModelCode,OpFlowGid,OpNum) = (select o.LeftBudgutFee - nvl(##confirmfee##,0),__USRGID__,__USRCODE__,__USRNAME__,sysdate,'费用申请单扣减',##ModelCode##,##FlowGid##,##Num## from dual) where o.entgid = __ENTGID__ and exists (select 1 from WF_^^ModelCode^^ wf where wf.entgid = __ENTGID__ and wf.flowgid = ##FlowGid## and o.ACGGID = wf.acgtwogid and o.CompanyGid = wf.CompanyGid and to_char(wf.CreateDate,'YYYY') = o.Year) 
