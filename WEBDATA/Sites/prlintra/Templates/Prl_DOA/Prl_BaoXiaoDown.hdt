@@ -2,6 +2,7 @@
 公司名称
 项目信息
 单号
+发起人
 状态
 金额
 收款人
@@ -14,6 +15,7 @@
 #NoForm#<HDPrint Value=#ComName# Replace=#DBField2Excel#>
 <HDPrint Value=#AcgCode# Replace=#None#>-<HDPrint Value=#AcgName# Replace=#None#>
 <HDPrint Value=#Num# Replace=#None#>
+<HDPrint Value=#FillUsrName# Replace=#None#>
 <HDPrint Value=#FStat# Replace=#None#>-<HDPrint Value=#Stat# Replace=#None#>
 #NoForm#<HDPrint Value=#ApplyFee# Replace=#DBField2Excel#>
 #NoForm#<HDPrint Value=#PayMan# Replace=#DBField2Excel#>

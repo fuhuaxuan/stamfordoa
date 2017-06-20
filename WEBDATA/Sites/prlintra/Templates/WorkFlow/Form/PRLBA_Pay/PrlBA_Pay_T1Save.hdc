@@ -22,7 +22,7 @@ SQLForCondition3=select 'µ¥ºÅ£º'|| ##Num##|| '£»' || ##TheMemo##  TheFlowMemo,'´
 SqlForCondition5=select code AcgCode from prl_acg where EntGid = __ENTGID__ and gid = ##AcgTwoGid##
 
 ;È¡³öÏÂÒ»²½ÉóÅúÈË
-SqlForCondition6=select F_PrlBA_getApp(__ENTGID__,##ModelGid##,__USRGID__,nvl(##payfee##, 0),##AcgCode##) T2Gid from dual
+SqlForCondition6=select F_PrlBA_getApp(__ENTGID__,##ModelGid##,__USRGID__,nvl(##payfee##, 0),##CompanyGid##,##AcgCode##) T2Gid from dual
 
 [AddtionalSQL]
 ;²Ù×÷£¬Ã»ÓĞ·µ»ØµÄ½á¹û£¬ÊÇÔÚÊı¾İ¿âÖĞÖ´ĞĞ£¬ÓÉInsert, Update, DeleteÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ

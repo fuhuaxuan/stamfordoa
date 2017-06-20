@@ -3,7 +3,25 @@
 <!-- JQuery函数引入 -->
 <script language="javascript" src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
 <script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
-
+<Script>
+function JQCodeChange(jsObj) {
+  var jqObj = $(jsObj);
+  //去除两边的空格
+  jqObj.val(JQTrim(jqObj.val()));
+  //如果为空，则直接返回
+  if (jqObj.val() == "") {
+    return false;
+  }
+  //正则表达式规则:判断是否为规范代码
+  //var reg=/^\w+$/;
+  var reg = /^[a-zA-Z0-9][a-zA-Z0-9_.]+$/;
+  if (!reg.test(jqObj.val())) {
+    alert("对不起，输入不符合代码规范，请重新输入！");
+    jqObj.val("");
+    jqObj.focus();
+  }
+}
+</Script>
 <form method="post" name="frmDo" action="##HDNet_AppName##/__ExplainModule?Url=HrEmpAddSave&UsrGid=<HDPrint Value=#UsrGid#>">
 
 <h3 class="TitleBar">基本资料新增</h3>
@@ -36,7 +54,7 @@
   </tr>
   <tr>
     <td class="DtlBarTitle">工号<font color="red">*</font></td>
-    <td class="ListTD" colspan="3"><input type="text" name="CODE" maxlength="32"  onblur="CheckIsRight(this)" onchange = "showEr_IsCode(this,'工号')" class="JQCode JQMust"></td>
+    <td class="ListTD" colspan="3"><input type="text" name="CODE" maxlength="32"  onblur="CheckIsRight(this)" class="JQCode JQMust"></td>
     <td class="DtlBarTitle" rowspan="7">照片 <br><a href="javascript:void(0)" onclick="if (document.all.Photo.value == '') {document.all.Pt.value = '无照片'} else {document.all.Photo.value = '';document.all.Pt.value = '照片已清除!';}">[清除照片]</a></td>
     <td class="ListTD" colspan="3" rowspan="7" >
       <img src="<HDPrint Value=#Photo# Replace=#DBField2Js#>?UsrGid=<HDPrint Value=#UsrGid# Replace=#DBField2Js#>" id="empimg" width="90" height="120" onerror="javascript:this.src='##GetWebRootPath(/images/default.gif)##?UsrGid=<HDPrint Value=#UsrGid# Replace=#DBField2Js#>'">
