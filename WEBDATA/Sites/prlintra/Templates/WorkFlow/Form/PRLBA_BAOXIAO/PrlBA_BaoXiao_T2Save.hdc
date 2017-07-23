@@ -94,3 +94,4 @@ WF3=WFFlowRun( ^^ModelCode^^_T1 | ^^ModelCode^^_T2 | selApp_1 | and ##AppAssign#
 
 ;否决，返回发起人
 WF4=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T1 | T1Gid | and ##AppAssign## = '否决' |^^AppFlowMemo^^)
+
