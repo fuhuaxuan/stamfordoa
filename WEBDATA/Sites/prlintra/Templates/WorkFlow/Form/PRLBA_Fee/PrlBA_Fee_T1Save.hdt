@@ -17,7 +17,7 @@ alert('<HDPrint Value=#Stat#>成功，填单人：<HDPrint Value=#CurUsrName# Replace=#
     location.replace('##HDNet_AppName##/WFFlowPage?Url=<HDPrint Value=#Modelcode#>_T1&UsrGid=<HDPrint Value=#UsrGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid# Replace=#DBField2Js#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>');
   }
   if (AppAssign == '提交'){
-    location.replace('##HDNet_AppName##/WFFlowPage?Url=<HDPrint Value=#Modelcode#>_Email&UsrGid=<HDPrint Value=#UsrGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid# Replace=#DBField2Js#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>');
+    location.replace('##HDNet_AppName##/WFFlowPage?Url=PrlDZ_Email&UsrGid=<HDPrint Value=#UsrGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid# Replace=#DBField2Js#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>');
   }
   if (AppAssign == '终止'){
     window.close();
