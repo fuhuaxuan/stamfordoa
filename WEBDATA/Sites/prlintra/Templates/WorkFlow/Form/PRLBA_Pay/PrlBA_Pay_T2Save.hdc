@@ -28,10 +28,12 @@ SQL1=select f.* from WF_^^ModelCode^^ f where f.EntGid = __ENTGID__ AND f.FlowGi
 ;更新本流程中主表信息
 Sql1=update wf_^^ModelCode^^ set (LastUpdDate,Stat) = (select sysdate,##AppAssign## from dual) where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
-Sql2=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## and AppDate is null and AppOrder = ##AppOrder##
+Sql2=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## and AppDate is null and AppGid = __USRGID__
+
+Sql3=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null and ##AppAssign## = '否决'
 
 ;插入本流程中审批人二信息
-SQL3=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppOrder,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,##AppType##,##AppOrder##,##AppAssign##, ##note##,sysdate from dual
+SQL4=insert into wf_^^ModelCode^^_App (EntGid,FlowGid,dtlgid,AppGid,AppCode,AppName,AppType,AppOrder,AppAssign,note,AppDate) select __ENTGID__,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,##AppType##,##AppOrder##,##AppAssign##, ##note##,sysdate from dual
 
 [AddtionalSQLUseWhere]
 ;显示，单条数据的查询，可以用于HDT显示，有select命令。从SQL1～SQL20共支持20条，同时会使用上面的[where]中的sql语句
