@@ -95,24 +95,15 @@
 
 ^1^DOA管理^^^_Self^DOA
 ^2^DOA查看列表^Prl_DOA^##HDNet_AppName##/__ExplainModule?Url=Prl_DOA&usrgid={##usrgid##}^_blank^
+^2^------------------^line^#^_self^
 ^2^费用预算导入^Prl_FeeIn^##HDNet_AppName##/__ExplainModule?Url=Prl_FeeIn&usrgid={##usrgid##}^_blank^
 ^2^费用预算导出^Prl_FeeOut^##HDNet_AppName##/__ExplainModule?Url=Prl_FeeOut&usrgid={##usrgid##}^MainPage^
 ^2^费用单权限设置^Prl_FeeRT^##HDNet_AppName##/__ExplainModule?Url=Prl_FeeRT&usrgid={##usrgid##}^MainPage^
 ^2^费用明细列表^Prl_FeeDtl^##HDNet_AppName##/__ExplainModule?Url=Prl_FeeDtl&usrgid={##usrgid##}^MainPage^
 ^2^付款查看列表^Prl_PAYList^##HDNet_AppName##/__ExplainModule?Url=Prl_PAYList&usrgid={##usrgid##}^MainPage^
 ^2^个人报销列表^Prl_BaoXiaoList^##HDNet_AppName##/__ExplainModule?Url=Prl_BaoXiaoList&usrgid={##usrgid##}^MainPage^
+^2^------------------^line^#^_self^
 ^2^项目用户设置^Prl_AcgSet^##HDNet_AppName##/__ExplainModule?Url=Prl_AcgSet&usrgid={##usrgid##}^MainPage^
-
-^1^合同条款管理^^^_Self^Prl_Contract
-^2^合同条款列表^Prl_Contract_List^##HDNet_AppName##/__ExplainModule?Url=Prl_Contract_List&usrgid={##usrgid##}^MainPage^
-^2^合同条款新增^Prl_Contract_Add^##HDNet_AppName##/__ExplainModule?Url=Prl_Contract_Add&usrgid={##usrgid##}^MainPage^
-^2^合同条款类型设置^Prl_Contract_Type^##HDNet_AppName##/__ExplainModule?Url=Prl_Contract_Type&usrgid={##usrgid##}^MainPage^
-^2^其它合同条款设置^Prl_Contract_Other^##HDNet_AppName##/__ExplainModule?Url=Prl_Contract_Other&usrgid={##usrgid##}^MainPage^
-
-^1^地理位置管理^^^_Self^Prl_Groundh
-^2^地理位置列表^Prl_Groundh_List^##HDNet_AppName##/__ExplainModule?Url=Prl_Groundh_List&usrgid={##usrgid##}^MainPage^
-^2^地理位置新增^Prl_Groundh_Add^##HDNet_AppName##/__ExplainModule?Url=Prl_Groundh_Add&usrgid={##usrgid##}^_blank^
-^2^地理位置导入^Prl_Groundh_Import^##HDNet_AppName##/__ExplainModule?Url=Prl_Groundh_Import&usrgid={##usrgid##}^_blank^
 
 ^1^工作流程设置^^^_Self^wf
 ^2^模型列表^wfmodellist^##HDNet_AppName##/__ExplainModule?Url=wfmodellist&usrgid={##usrgid##}^MainPage^
