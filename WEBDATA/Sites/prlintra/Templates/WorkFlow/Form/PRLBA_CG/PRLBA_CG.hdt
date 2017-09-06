@@ -30,7 +30,7 @@
   </TR>
 </TABLE>
 </div>
-<iframe onload="JQAutoHeight(this)" id="iframeDtl" frameborder ='0' width="100%"  scrolling="no" style="width:100%" Src="##HDNet_AppName##/WFFlowPage?Url=<HDPrint Value=#ModelCode#>_Content&UsrGid=<HDPrint Value=#UsrGid#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid#>&FeeFlowGid=<HDPrint Value=#FeeFlowGid#>"></iframe>
+<iframe onload="JQAutoHeight(this)" id="iframeDtl" frameborder ='0' width="100%"  scrolling="no" style="width:100%" Src="##HDNet_AppName##/WFFlowPage?Url=<HDPrint Value=#ModelCode#>_Content&UsrGid=<HDPrint Value=#UsrGid#>&ModelGid=<HDPrint Value=#ModelGid# Replace=#DBField2Js#>&FlowGid=<HDPrint Value=#FlowGid#>&FeeFlowGid=<HDPrint Value=#FeeFlowGid# Replace=#DBField2Js#>"></iframe>
 <br>
 </form>
 <script language="javascript">
@@ -42,3 +42,5 @@
     $("form[name=frmDo]").append($ToolBar.html());
   });
 </script>
+
+<HDPrint Value=#EmailPhone# Replace=#None#>

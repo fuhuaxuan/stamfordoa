@@ -15,14 +15,26 @@ Remind1=¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓĞÕÒµ½<script>alert('¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇ
 SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName from wf_Model wm where wm.EntGid = __ENTGID__ and wm.ModelGid = ##ModelGid##
 
 ;ÏÔÊ¾±¾Á÷³ÌÖ÷±íĞÅÏ¢
-Sql1=select f.*,decode(wf.stat,'0', 'Î´Ö´ĞĞ','1', '´ıÖ´ĞĞ','2', 'Ö´ĞĞÖĞ','3', '<FONT COLOR="blue">ÒÑÍê³É</FONT>','4', '<font color="gray">ÒÑÍ£Ö¹</font>','5', '<FONT COLOR="red">ÒÑ×÷·Ï</FONT>','6', '<FONT COLOR="red">ÒÑ³¬Ê±</FONT>') Flowstat from WF_^^ModelCode^^ f,wf_flow wf where f.EntGid = __ENTGID__ and f.EntGid = wf.EntGid and f.FlowGid = wf.FlowGid and f.FlowGid = ##FlowGid##
+Sql1=select f.*,wf.stat Flowstat,'¸öÈË±¨Ïú' MCode from wf_^^ModelCode^^ f,wf_flow wf where f.EntGid = __ENTGID__ and f.EntGid = wf.EntGid and f.FlowGid = wf.FlowGid and f.FlowGid = ##FlowGid##
 
 ;È¡³öÓÊ¼ş
-;Í¬Òâ²¢ÏÂÒ»²½£ºÈ¡³öÏÂÒ»²½Ö´ĞĞÈËEmail
-LoopSQL1=select * from wf_^^ModelCode^^_Dtl where EntGid = __ENTGID__ and FlowGid = ##FlowGid## order by AcgCode
-LoopHDT1=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_EmailDtl.hdt
-LoopVAR1=EmailDtl
+LoopSQL4=select * from WF_^^ModelCode^^_Dtl where EntGid = __ENTGID__ and FlowGid = ##FlowGid## order by AcgCode
+LoopHDT4=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_EmailDtl.hdt
+LoopVAR4=EmailDtl
 
+;ÏÔÊ¾ÉóÅúÈË
+LoopSQL18=select hr.Email from hr_emp hr where hr.entgid = __ENTGID__ and exists (select 1 from wf_task t where t.EntGid = hr.EntGid and t.FlowGid = ##FlowGid## and t.ExecGid = hr.UsrGid and t.Stat = 1)
+LoopHDT18=Templates\WorkFlow\Form\PrlBA_Email\Loopsql_App.hdt
+LoopVAR18=AppList
+
+;ÏÔÊ¾ÓÊ¼ş
+LoopSQL19=select 1 from dual
+LoopHDT19=Templates\WorkFlow\Form\^^ModelCode^^\Loopsql_Email.hdt
+LoopVAR19=EmailList
+
+LoopSQL20=select 1 from dual
+LoopHDT20=Templates\WorkFlow\Form\PrlBA_Email\Loopsql_WebEmail.hdt
+LoopVAR20=EmailPhone
 [AddtionalSQL]
 ;²Ù×÷£¬Ã»ÓĞ·µ»ØµÄ½á¹û£¬ÊÇÔÚÊı¾İ¿âÖĞÖ´ĞĞ£¬ÓĞInsert, Update, DeleteÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ
 SQL1=

@@ -549,3 +549,9 @@ HDT=Templates\WorkFlow\Form\PRLBA_CG\PRLBA_CG_T4.hdt
 [PRLBA_CG_T4Save]
 HDC=Templates\WorkFlow\Form\PRLBA_CG\PRLBA_CG_T4Save.hdc
 HDT=Templates\WorkFlow\Form\PRLBA_CG\PRLBA_CG_T4Save.hdt
+
+
+;*****************·¢ËÍÓÊ¼þ*********
+[PrlBA_Email]
+HDC=Templates\WorkFlow\Form\PrlBA_Email\PrlBA_Email.hdc
+HDT=Templates\WorkFlow\Form\PrlBA_Email\PrlBA_Email.hdt

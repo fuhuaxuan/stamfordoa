@@ -6,7 +6,7 @@ LIMITDesc1=StringSize[,0]
 LIMITRemind1=¶Ô²»Æğ£¬ÄúÎ´Ö¸¶¨Á÷³ÌĞÅÏ¢£¡Çë´ÓÕıÈ·µÄÂ·¾¶½øÈë
 
 ;ÅĞ¶Ï´«ÈëFlowGid ÊÇ·ñ´æÔÚ
-SQL1=select 1 from WF_Flow where EntGid = __ENTGID__ and FlowGid = ##FlowGid##
+SQL1=select 1 from WF_Flow wf where wf.EntGid = __ENTGID__ and wf.FlowGid = ##FlowGid##
 Remind1=¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓĞÕÒµ½<script>alert('¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓĞÕÒµ½');window.close()</script>
 
 [Detail]
@@ -14,28 +14,13 @@ Remind1=¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓĞÕÒµ½<script>alert('¶Ô²»Æğ£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇ
 ;È¡³ö±¾Á÷³ÌÄ£ĞÍĞÅÏ¢
 SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName from wf_Model wm where wm.EntGid = __ENTGID__ and wm.ModelGid = ##ModelGid##
 
-;µÃµ½ÒµÎñµ¥¾İĞÅÏ¢
-Sql1=select f.*,wf.stat Flowstat,'¸öÈË±¨Ïú' MCode from wf_^^ModelCode^^ f,wf_flow wf where f.EntGid = __ENTGID__ and f.EntGid = wf.EntGid and f.FlowGid = wf.FlowGid and f.FlowGid = ##FlowGid##
-
-;È¡³öµ±Ç°Á÷³Ì£¬µ±Ç°ÓÃ»§£¬ÏÂÒ»²½²Ù×÷
-SQl2=select wt.Code NextStepCode,wt.Name NextStepName from wf_task wt where wt.EntGid = __ENTGID__ and wt.ModelGid = ##ModelGid## and wt.FlowGid = ##FlowGid## and wt.ExecGid = __USRGID__ and wt.stat = 1
-
-;È¡³öÓÊ¼ş
-LoopSQL4=select * from WF_^^ModelCode^^_Dtl where EntGid = __ENTGID__ and FlowGid = ##FlowGid## order by AcgCode
-LoopHDT4=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_EmailDtl.hdt
-LoopVAR4=EmailDtl
-
-;ÏÔÊ¾ÓÊ¼ş
-LoopSQL19=select 1 from dual
-LoopHDT19=Templates\WorkFlow\Form\^^ModelCode^^\Loopsql_Email.hdt
-LoopVAR19=EmailList
-
-LoopSQL20=select 1 from dual
-LoopHDT20=Templates\WorkFlow\Form\PrlBA_Email\Loopsql_Email.hdt
-LoopVAR20=EmailPhone
 [AddtionalSQL]
 ;²Ù×÷£¬Ã»ÓĞ·µ»ØµÄ½á¹û£¬ÊÇÔÚÊı¾İ¿âÖĞÖ´ĞĞ£¬ÓĞInsert, Update, DeleteÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ
-SQL1=
+
+;--·¢ËÍÓÊ¼ş
+;--¹ı³ÌÃüÃû£º"P_Ä£ĞÍ´úÂë_doMail.sql"
+;--²ÎÊı1£ºFlowGid
+SQL1=call P_^^ModelCode^^_doMail(##FlowGid##)
 
 [AddtionalSQLUseWhere]
 ;ÏÔÊ¾£¬µ¥ÌõÊı¾İµÄ²éÑ¯£¬¿ÉÒÔÓÃÓÚHDTÏÔÊ¾£¬ÓĞselectÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ£¬Í¬Ê±»áÊ¹ÓÃÉÏÃæµÄ[where]ÖĞµÄsqlÓï¾ä
@@ -43,9 +28,6 @@ SQL1=
 Sql1=
 
 [Master]
-;ÏÔÊ¾£¬¶àÌõ¼ÇÂ¼µÄ²éÑ¯£¬¿ÉÔÚHDTÒ³ÃæÖĞÖ±½ÓÊ¹ÓÃ<HDLoop>ÏÔÊ¾£¬²¢ÄÜ¹»Ìá¹©·­Ò³¡£
-SQL=select * from wf_^^ModelCode^^_Dtl where EntGid = __ENTGID__ and FlowGid = ##FlowGid## order by AcgCode
-Count=select 1 from dual
 
 [DefaultWhere]
 ;¶àÌõ¼ÇÂ¼µÄ²éÑ¯µÄÄ¬ÈÏÌõ¼ş
@@ -85,6 +67,7 @@ Log=
 ;Ò³ÃæÏÔÊ¾: 0:BodyPage;1:DetailPage;2:BlankPage
 PageKind=2
 
+
 ;ÒÔÏÂÄÚÈİÊÇÎªÁËÈÃExplainAjaxÒıÇæÀ´¶ÁµÄ¡£¶ÔExplainModuleÒıÇæÀ´Ëµ£¬ºöÂÔ´Ë²¿·ÖÄÚÈİ¡£
 [Ajax]
 ;´ËSection¡°[Ajax]¡±,±íÃ÷ÒÔÏÂÄÚÈİÊÇÎªÁËAjaxÓ¦ÓÃ¶øÅäÖÃµÄÎÄ¼ş¡£
@@ -99,8 +82,3 @@ AddtionalSQL1=
 
 ;ÊµÏÖ¶ÔÊı¾İ¿â½øĞĞµÄÑ­»·²Ù×÷£¬¿ÉÒÔÖ§³Ö20Ìõ, LoopSQL1¡«LoopSQL20
 LoopSQL1=
-
-[Link]
-;°´Å¥È¨ÏŞ£¬´ÓURL1~URL10¹²Ö§³Ö10¸ö£¬ÄÚÈİ·ÅµÄÊÇRT±íµÄÈ¨ÏŞ£¬ÔÚÒ³Ãæ·µ»ØµÄ±äÁ¿ÎªchkRtID1~chkRtID10
-URL1=wfmodellist
-URL2=

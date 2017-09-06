@@ -5,6 +5,9 @@ LIMIT1=FlowGid
 LIMITDesc1=StringSize[,0]
 LIMITRemind1=¶Ô²»Æð£¬ÄúÎ´Ö¸¶¨Á÷³ÌÐÅÏ¢£¡Çë´ÓÕýÈ·µÄÂ·¾¶½øÈë
 
+DEFAULT1=FeeFlowGid
+DEFAULTValue1=
+
 ;ÅÐ¶Ï´«ÈëFlowGid ÊÇ·ñ´æÔÚ
 SQL1=select 1 from WF_Flow wf where wf.EntGid = __ENTGID__ and wf.FlowGid = ##FlowGid##
 Remind1=¶Ô²»Æð£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓÐÕÒµ½<script>alert('¶Ô²»Æð£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓÐÕÒµ½');window.close()</script>
@@ -15,11 +18,24 @@ Remind1=¶Ô²»Æð£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇëµ¥Ã»ÓÐÕÒµ½<script>alert('¶Ô²»Æð£¬ÄúÖ¸¶¨µÄÁ÷³ÌÉêÇ
 SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName from wf_Model wm where wm.EntGid = __ENTGID__ and wm.ModelGid = ##ModelGid##
 
 ;µÃµ½ÒµÎñµ¥¾ÝÐÅÏ¢
-Sql1=select f.*,wf.stat Flowstat from WF_^^ModelCode^^ f,wf_flow wf where f.EntGid = __ENTGID__ and f.EntGid = wf.EntGid and f.FlowGid = wf.FlowGid and f.FlowGid = ##FlowGid##
+Sql1=select f.*,wf.stat Flowstat,'²É¹º' MCode from WF_^^ModelCode^^ f,wf_flow wf where f.EntGid = __ENTGID__ and f.EntGid = wf.EntGid and f.FlowGid = wf.FlowGid and f.FlowGid = ##FlowGid##
 
 ;È¡³öµ±Ç°Á÷³Ì£¬µ±Ç°ÓÃ»§£¬ÏÂÒ»²½²Ù×÷
 SQl2=select wt.Code NextStepCode,wt.Name NextStepName from wf_task wt where wt.EntGid = __ENTGID__ and wt.ModelGid = ##ModelGid## and wt.FlowGid = ##FlowGid## and wt.ExecGid = __USRGID__ and wt.stat = 1
 
+;ÏÔÊ¾±¾Á÷³ÌÃ÷Ï¸ÐÅÏ¢
+LoopSQL4=select d.*,t.flowgid tFlowgid,t.Stat,t.FStatText from wf_^^ModelCode^^_Dtl d,(select f.entgid,f.flowgid,f.stat,decode(wf.stat,'0', 'Î´Ö´ÐÐ','1', '´ýÖ´ÐÐ','2', 'Ö´ÐÐÖÐ','3', '<FONT COLOR="blue">ÒÑÍê³É</FONT>','4', '<font color="gray">ÒÑÍ£Ö¹</font>','5', '<FONT COLOR="red">ÒÑ×÷·Ï</FONT>','6', '<FONT COLOR="red">ÒÑ³¬Ê±</FONT>') FStatText,wf.stat FStat from wf_prlba_fee f,wf_flow wf where f.EntGid = wf.entgid and f.flowgid = wf.flowgid) t where d.EntGid = __ENTGID__ and d.FlowGid = ##FlowGid## and d.entgid = t.entgid(+) and d.FeeFlowGid = t.flowgid(+) and ((##FeeFlowGid## is null and 1=1) or d.FeeFlowGid = ##FeeFlowGid##) order by d.Line
+LoopHDT4=Templates\WorkFlow\Form\^^ModelCode^^\Loopsql_EmailDtl.hdt
+LoopVAR4=EmailDtl
+
+;ÏÔÊ¾ÓÊ¼þ
+LoopSQL19=select 1 from dual
+LoopHDT19=Templates\WorkFlow\Form\^^ModelCode^^\Loopsql_Email.hdt
+LoopVAR19=EmailList
+
+LoopSQL20=select 1 from dual
+LoopHDT20=Templates\WorkFlow\Form\PrlBA_Email\Loopsql_Email.hdt
+LoopVAR20=EmailPhone
 [AddtionalSQL]
 ;²Ù×÷£¬Ã»ÓÐ·µ»ØµÄ½á¹û£¬ÊÇÔÚÊý¾Ý¿âÖÐÖ´ÐÐ£¬ÓÐInsert, Update, DeleteÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ
 SQL1=
