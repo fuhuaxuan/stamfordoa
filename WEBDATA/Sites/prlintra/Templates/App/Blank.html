@@ -1,0 +1,37 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQLoadImg.js)##"></script>
+<html>
+<head>
+  <title>##param1##</title>
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache"> 
+  <meta http-equiv="Content-Type" content="text/html;charset=gb2312">
+  <link rel="stylesheet" href="##GetWebRootPath(/Css/style.css)##">
+  <script language="JavaScript">
+    function initXMLHTTPRequest()
+    {
+      var xRequest = null;
+      if(window.XMLHttpRequest)
+      {
+        xRequest = new XMLHttpRequest();
+      }
+      else if(window.ActiveXObject)
+      {
+        xRequest = new ActiveXObject('Msxml2.XMLHTTP');
+      }
+      else
+      {
+        xRequest = new ActiveXObject('Microsoft.XMLHTTP');
+      }
+      return xRequest;
+    }
+  var http = initXMLHTTPRequest();
+</script>
+</head>
+<body topmargin="1" bottommargin="1" leftmargin="1" rightmargin="1">
+##param2##
+</body>
+</html>

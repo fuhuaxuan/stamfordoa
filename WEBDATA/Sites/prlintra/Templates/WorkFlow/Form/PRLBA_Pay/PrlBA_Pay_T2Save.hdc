@@ -28,7 +28,7 @@ SQL1=select f.* from WF_^^ModelCode^^ f where f.EntGid = __ENTGID__ AND f.FlowGi
 ;更新本流程中主表信息
 Sql1=update wf_^^ModelCode^^ set (LastUpdDate,Stat) = (select sysdate,##AppAssign## from dual) where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## 
 
-Sql2=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## and AppDate is null and AppGid = __USRGID__
+Sql2=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ AND  FlowGid = ##FlowGid## and AppDate is null and AppOrder = ##AppOrder##
 
 Sql3=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null and ##AppAssign## = '否决'
 

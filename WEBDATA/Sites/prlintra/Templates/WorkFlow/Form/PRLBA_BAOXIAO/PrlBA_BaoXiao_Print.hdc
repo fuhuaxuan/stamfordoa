@@ -26,7 +26,7 @@ LoopHDT1=Templates\WorkFlow\Form\^^ModelCode^^\LoopSql_DtlPrint.hdt
 LoopVAR1=DtlList
 
 ;显示本流程已审批审批人信息
-LoopSQL2=select a.*,decode(a.apptype,0,'发起人',10,'部门总监',20,'财务经理',25,'财务总监',28,'院长',30,'总经理',40,'博爱监事',50,'项目总经理',60,'合资公司CEO',70,'鹏瑞利监事',80,'鹏瑞利董事',90,'合资公司财务总监',100,'博爱CEO',110,'鹏瑞利CEO',120,'发起人确认',130,'出纳付款',140,'发起人修改支付信息') apptypetext from WF_^^ModelCode^^_App a where FlowGid = ##FlowGid## order by AppDate,AppType,AppOrder
+LoopSQL2=select a.*,decode(a.apptype,5,'发起人',10,'部门总监',15,'财务经理',20,'财务总监',23,'资产经理',25,'院长',30,'总经理',35,'合资公司CFO',40,'博爱监事',45,'博爱董事',50,'鹏瑞利监事',55,'鹏瑞利董事',60,'合资公司CEO',65,'博爱CEO',70,'鹏瑞利CEO',75,'发起人确认',80,'出纳付款',85,'发起人修改支付信息') apptypetext from WF_^^ModelCode^^_App a where FlowGid = ##FlowGid## order by AppDate,AppType,AppOrder
 LoopHDT2=Templates\WorkFlow\Form\^^ModelCode^^\Loopsql_AppPrint.hdt
 LoopVAR2=AppList
 

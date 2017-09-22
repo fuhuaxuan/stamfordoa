@@ -42,7 +42,7 @@ SQL3=update Wf_^^ModelCode^^ set (LastUpdDate,Stat,CGTitle,CGMemo,CGUsrGid,CGUsr
 SQL4=update Wf_^^ModelCode^^ set (LastUpdDate,Stat,EndMemo) = (select sysdate,##Stat##,##EndMemo## from dual) where EntGid = __ENTGID__  and FlowGid = ##FlowGid## and ##Stat## = '终止'
 
 ;删除本流程中未审批的审批人
-SQL5=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null and ##Stat## <> '终止'
+SQL5=delete from Wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null
 
 ;插入本流程发起人信息
 SQL6=insert into Wf_^^ModelCode^^_App (EntGid,ModelGid,FlowGid,Gid,AppGid,AppCode,AppName,AppType,AppAssign,AppMemo,AppDate) select __ENTGID__,##ModelGid##,##FlowGid##,sys_guid(),__USRGID__,__USRCODE__,__USRNAME__,10,##Stat##,'',sysdate from dual where ##Stat## <> '保存'

@@ -1,0 +1,65 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<html>
+<head>
+  <title>##param3##</title>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="content-type" content="text/html;charset=gb2312">
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+  <link rel="stylesheet" href="##GetWebRootPath(/Css/style.css)##">
+<style>
+button{font-size:12px;font-weight:bold;height:50px;width:50px;margin:auto;background-position:center; background-size:120px  120px; background-image:url('##GetWebRootPath(/Images/Sys/SysApp/Menu_8.jpg)##');filter:alpha(opacity=80); -moz-opacity:0.7; -khtml-opacity: 0.7; opacity: 0.7; padding:5px;cursor:move;border-radius:50%;text-align:center;border-bottom:4px red solid;border-right:4px red solid;}
+</style>
+</head>
+<body topmargin="0" leftmargin="0" scroll="no" >
+<table style="width:100%;height:100%" cellspacing="0" cellpadding="0" border="0" id="Table_Main">
+  <col style="height:100%">
+  <col style="height:100%">
+  <tr>
+    <TD id="Menu_TD"  width="165px" name='jqmenu'>
+      <iframe src="##HDNet_AppName##/Menu?UsrGid=##param1##" style="width:100%;height:100%"   name="MenuPage" id="MenuPage" scrolling="auto" noresize="noresize" frameborder="0"></iframe>
+    </td>
+    <TD  id="Menu_TD2"  height="100%">
+      <table width="100%" height="99.9%" cellspacing="0" cellpadding="0" border="0"  valign=top >
+        <col style="width:5px">
+        <col style="width:">
+        <tr  id="Tr_Top">
+          <TD colspan=2 class="JQMainTop" style="background-color:#0C5099;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" height="22" ID="tbTop_Show_in_BodyPage">
+              <tr height="22" style="background-color:#0C5099">
+                <td align="left" width="60%" name="jqmenu3"><font color="white">&nbsp;&nbsp;##param2##：欢迎使用！&nbsp;&nbsp;您所在的企业是##param3##</font></a></td>
+                <td align="left" width="60%" name="jqmenu2" style="display:none"><font color="white">&nbsp;&nbsp;##param2##</font></a></td>
+                <td align="right" width="35%" nowrap>
+                  <a href="##HDNet_AppName##/Main?UsrGid=##param1##" target="_top">
+                  <FONT class="IconMain">　&nbsp;</FONT>
+                  <font color="white">首页</font></a>&nbsp;&nbsp;
+                  <a href="##HDNet_AppName##/Help?UsrGid=##param1##" target="_blank">
+                  <FONT class="IconHelp">　&nbsp;</FONT>
+                  <font color="white">帮助</font></a>&nbsp;&nbsp;
+                  <a href="##HDNet_AppName##/Logout?UsrGid=##param1##" target="_top">
+                  <FONT class="IconLogout">　&nbsp;</FONT>
+                  <font color="white">注销</font></a>
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td background="##GetWebRootPath(/Images/App/Main.gif)##" height="8" colspan="3"></td>
+              </tr>
+            </table>
+          </TD>
+        </tr>
+        <tr style="height:100%" valign=top style="background-color:#ffffff"  valign="top">
+          <TD class="JQMain_Menu"  style="width:5px" height="100%">&nbsp;</TD>
+          <TD height="100%">
+            <iframe src="##HDNet_AppName##/MainPage?UsrGid=##param1##"  style="width:100%;height:100%"  name="MainPage" id="MainPage" scrolling="auto" noresize="noresize" frameborder="0" ></iframe>
+          </TD>
+        </tr>
+        <tr height="8px" style="background-color:#d8d9d9">
+          <TD colspan=2></TD>
+        </TR>
+      </table>
+     </td>
+  </tr>
+</table>
+</BODY>
+</HTML>

@@ -18,7 +18,6 @@
     changeHeight();
   }
 </script>
-<HDPrint Value=#EmailPhone# Replace=#None#>
 <form name="frmDtl" method="Post" action="">
 <table cellpadding="0" cellspacing="1" align="center" width="100%">
   <col style="padding-left:4px;width:10%">

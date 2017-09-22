@@ -40,7 +40,7 @@ SQL3=update wf_^^ModelCode^^ set (LastUpdDate,Stat,CompanyGid,CompanyName,AcgOne
 SQL4=update wf_^^ModelCode^^ set (LastUpdDate,Stat,EndMemo) = (select sysdate,##Stat##,##EndMemo## from dual) where FlowGid = ##FlowGid## and EntGid = __ENTGID__ and ##Stat## = '终止'
 
 ;删除本流程中未审批的审批人
-SQL5=delete from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null and ##Stat## <> '终止'
+SQL5=delete from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null
 
 SQL6=update wf_^^ModelCode^^_App set AppOrder = AppOrder + 100 where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and ##Stat## <> '终止'
 

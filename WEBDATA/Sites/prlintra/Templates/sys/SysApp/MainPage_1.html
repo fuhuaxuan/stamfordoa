@@ -1,0 +1,83 @@
+<SCRIPT LANGUAGE="JavaScript">
+  var arrArray = new Array;
+  var iCount = 0;
+  var flag = 0;
+  var iExpand = 0;
+</SCRIPT>
+<table id="tb_Main_Remind" cellpadding="3" cellspacing="0" width="100%" height="100%"  valign="top">
+  <col valign="TOP" id="col1" style="width:##param3##">
+  <col valign="TOP" id="col2" style="width:##param4##">
+  <tr height="100%"  valign="top"> 
+    <td class="MainRemindTD"  valign="TOP" >
+      <span id="span1" style="border:0px solid black;width:100%;height:100%">
+      ##param1##
+      </span>
+    </td>
+    <td  valign="TOP" >
+      <span id="span2" style="border:0px solid black;width:100%;height:100%">
+      ##param2##
+      </span>
+    </td>
+  </tr>
+  <input type="hidden" name="UsrGid" value="##param5##">
+</table>
+
+<script language="JavaScript">
+//禁止选择标题
+window.document.onselectstart = mouseStop;
+function mouseStop() 
+{
+  window.event.returnValue = false
+}
+
+//自动调节宽度
+if (document.all.span2.innerHTML == '') 
+{
+  document.all.col2.style.width='0%';
+  document.all.col1.style.width='100%';
+}
+if (document.all.span1.innerHTML == '')
+{
+  document.all.col1.style.width='0%';
+  document.all.col2.style.width='100%';
+}
+
+//收缩列表内容
+function HideShow(obj1,obj2,obj3)
+{
+  if (obj1.style.display == '')
+  {
+    obj1.style.display = 'none';
+    obj2.style.display = 'none';
+    obj3.style.display = 'none';
+    event.srcElement.src = '##GetWebRootPath(/Images/Sys/Down.gif)##';
+  }
+  else
+  {
+    obj1.style.display = '';
+    obj2.style.display = '';
+    obj3.style.display = '';
+    event.srcElement.src = '##GetWebRootPath(/Images/Sys/UP.gif)##';
+  }
+  event.srcElement.blur();
+}
+
+Activation();
+
+//定义Activation(),激活页面各个模块
+function Activation()
+{
+  if (flag < iCount)
+  {
+    var temp = '';
+    temp = eval('frameRemind_' + arrArray[flag]);
+    var src = '##HDNet_AppName##/MainPageRemind?Section=' + arrArray[flag] + '&UsrGid=##param5##';
+    temp.location = src;
+    flag++;
+  }
+  else
+  {
+    iExpand=1;//在各个模块激化完毕后,改变iExpand的值,使模块点击刷新时,不判断是否自动展开
+  }
+}
+</script>

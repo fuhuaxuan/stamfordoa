@@ -2,7 +2,7 @@
 <tr><td>您好 :</td></tr>
 <tr><td>[流程名称] : <HDPrint Value=#ModelName#>；</td></tr>
 <tr><td>[单号] : <HDPrint Value=#Num#>；</td></tr>
-<tr><td>[发起人] : <HDPrint Value=#FillUsrName#>[<HDPrint Value=#FillUsrDept#>]；</td></tr>
+<tr><td>[发起人] : <HDPrint Value=#FillUsrName#>[<HDPrint Value=#FillDeptName#>]；</td></tr>
 <tr><td>[发起时间] : <HDPrint Value=#CreateDate#>；</td></tr>
 <HDIF EqualNot(<HDPrint Value=#feeflowgid# Replace=#DBField2Input#>1, 1)>
 <tr><td>[费用单号] : <HDPrint Value=#feeNum#>-<HDPrint Value=#partnum#>；</td></tr>

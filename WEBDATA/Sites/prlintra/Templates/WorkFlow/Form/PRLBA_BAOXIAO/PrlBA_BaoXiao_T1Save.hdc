@@ -42,7 +42,7 @@ SQL5=delete from Wf_^^ModelCode^^_Attach where EntGid = __ENTGID__ and FlowGid =
 SQL6=delete from Wf_^^ModelCode^^_Dtl where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and ##Stat## <> '终止'
 
 ;删除本流程中未审批的审批人
-SQL7=delete from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null and ##Stat## <> '终止'
+SQL7=delete from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and AppDate is null
 
 SQL8=update wf_^^ModelCode^^_App set AppOrder = AppOrder + 100 where EntGid = __ENTGID__ and FlowGid = ##FlowGid## and ##Stat## <> '终止'
 

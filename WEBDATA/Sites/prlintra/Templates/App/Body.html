@@ -1,0 +1,174 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<body bgcolor="white" topmargin="0" leftmargin="5" valign="top">
+<TABLE width="100%"  cellspacing="0" cellpadding="0" align="center" height="100%" >
+<tr ID="tbTop_Show_in_BodyPage" style="display:none;">
+  <td align="center" height="22">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" >
+      <tr height="22" style="background-color:#0C5099">
+        <td align="left" width="60%" name="jqmenu1"><font color="white">&nbsp;&nbsp;##param3##：欢迎使用！&nbsp;&nbsp;您所在的企业是##param4##</font></a></td>
+        <td align="left" width="60%" name="jqmenu2"><font color="white">&nbsp;&nbsp;##param3##</font></a></td>
+        <td align="right" width="35%" nowrap>
+          <a href="##HDNet_AppName##/Main?UsrGid=##param1##" target="_top">
+          <FONT class="IconMain">　&nbsp;</FONT>
+          <font color="white">首页</font></a>&nbsp;&nbsp;
+          <a href="##HDNet_AppName##/Help?UsrGid=##param1##" target="_blank">
+          <FONT class="IconHelp">　&nbsp;</FONT>
+          <font color="white">帮助</font></a>&nbsp;&nbsp;
+          <a href="##HDNet_AppName##/Logout?UsrGid=##param1##" target="_top">
+          <FONT class="IconLogout">　&nbsp;</FONT>
+          <font color="white">注销</font></a>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td background="##GetWebRootPath(/Images/App/Main.gif)##" height="8" colspan="3"></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<TR valign="top" >
+  <TD height="100%">
+    <table id="tbMiddle_Show_in_BodyPage" width="100%" cellspacing="0" cellpadding="0" align="center" height="100%"  valign="top">
+      <tr style="background-color:white">
+      <td height="10"></td>
+      </tr>
+      <tr id="tbMiddle_Show_in_BodyPage_Tr" valign="top">
+      <td id="tbMiddle_Show_in_BodyPage_td">##param2##</td>
+      </tr>
+    </table>
+  </TD>
+</TR>
+</TABLE>
+</body>
+</html>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+  function init_Body_Detail()
+  {
+    if (!document.parentWindow)
+    {
+      try {
+        if (window.self == window.parent) //如果没有框架结构alert('none'); else alert('have');
+        {
+          tbTop_Show_in_BodyPage.style.width='100%';
+          tbTop_Show_in_BodyPage.style.display='';
+          tbBottom_Show_in_BodyPage.style.display='';
+          tbMiddle_Show_in_BodyPage.style.width='100%';
+          tbBottom_Show_in_BodyPage.style.width='100%';
+        }
+        else
+        {
+          tbTop_Show_in_BodyPage.style.width='100%';
+          tbTop_Show_in_BodyPage.style.display='none';
+          tbBottom_Show_in_BodyPage.style.display='none';
+          tbMiddle_Show_in_BodyPage.style.width='100%';
+          tbBottom_Show_in_BodyPage.style.width='100%';
+        }
+
+        //如果在iframe中，则隐藏底栏
+        if (window.self.name == '' && window.parent.name == 'MainPage') 
+        {
+          tbBottom_Show_in_BodyPage.style.display = 'none';
+          // 如果页面无内容，则iframe也被隐藏
+          if (tbMiddle_Show_in_BodyPage_td.innerHTML == '')
+          {
+            tbMiddle_Show_in_BodyPage.style.display = "none";
+            
+            var s, sParentIFrame, iPos;
+            s = window.location.search;
+            iPos = s.search('parentiframe=');
+            if (iPos != -1)
+            {
+              sParentIFrame = s.substr(iPos + 13, s.length);
+              if (sParentIFrame != '')
+              {
+                window.parent.document.all(sParentIFrame).style.display = 'none';
+              }
+            }
+          }
+        }
+        else {
+          //设置底栏的位置
+          if (tbTop_Show_in_BodyPage.style.display!= 'none')
+            tbMiddle_Show_in_BodyPage_Tr.style.height= window.document.body.clientHeight-tbTop_Show_in_BodyPage.height-tbBottom_Show_in_BodyPage.height-38;
+          else
+            tbMiddle_Show_in_BodyPage_Tr.style.height= window.document.body.clientHeight -tbBottom_Show_in_BodyPage.height-38;
+        }
+      }
+      catch (e) {
+      }
+
+
+    }
+    else try {
+      if (document.parentWindow == window.parent) //如果没有框架结构alert('none'); else alert('have');
+      {
+        tbTop_Show_in_BodyPage.style.width='100%';
+        tbTop_Show_in_BodyPage.style.display='';
+          tbBottom_Show_in_BodyPage.style.display='';
+        tbMiddle_Show_in_BodyPage.style.width='100%';
+        tbBottom_Show_in_BodyPage.style.width='100%';
+      }
+      else
+      {
+        tbTop_Show_in_BodyPage.style.width='100%';
+        tbTop_Show_in_BodyPage.style.display='none';
+          tbBottom_Show_in_BodyPage.style.display='none';
+        tbMiddle_Show_in_BodyPage.style.width='100%';
+        tbBottom_Show_in_BodyPage.style.width='100%';
+      }
+
+      //如果在iframe中，则隐藏底栏
+      if (document.parentWindow.name == '' && window.parent.name == 'MainPage') 
+      {
+        tbBottom_Show_in_BodyPage.style.display = 'none';
+        // 如果页面无内容，则iframe也被隐藏
+        if (tbMiddle_Show_in_BodyPage_td.innerHTML == '')
+        {
+          tbMiddle_Show_in_BodyPage.style.display = "none";
+          
+          var s, sParentIFrame, iPos;
+          s = window.location.search;
+          iPos = s.search('parentiframe=');
+          if (iPos != -1)
+          {
+            sParentIFrame = s.substr(iPos + 13, s.length);
+            if (sParentIFrame != '')
+            {
+              window.parent.document.all(sParentIFrame).style.display = 'none';
+            }
+          }
+        }
+      }
+      else {
+        //设置底栏的位置
+        if (tbTop_Show_in_BodyPage.style.display!= 'none')
+          tbMiddle_Show_in_BodyPage_Tr.style.height= window.document.body.clientHeight-tbTop_Show_in_BodyPage.height-tbBottom_Show_in_BodyPage.height-38;
+        else
+          tbMiddle_Show_in_BodyPage_Tr.style.height= window.document.body.clientHeight -tbBottom_Show_in_BodyPage.height-38;
+      }
+    }
+    catch (e) {
+    }
+  }
+
+  init_Body_Detail();
+  document.body.onresize = init_Body_Detail;
+</SCRIPT>
+
+<script language="javascript">
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(function(){
+    var browser = JQGetBrowser();
+    if (browser.mobile){
+      $("td[name=jqmenu1]").hide();
+    }
+    else{
+      $("td[name=jqmenu2]").hide();
+    }
+  });
+</script>
