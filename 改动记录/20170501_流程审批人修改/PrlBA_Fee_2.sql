@@ -86,7 +86,6 @@ BEGIN
                and f.entgid = wf.entgid
                and f.flowgid = wf.flowgid
                and wf.stat < 3
-                  
                and (select count(1)
                       from wf_task t
                      where t.entgid = f.entgid
