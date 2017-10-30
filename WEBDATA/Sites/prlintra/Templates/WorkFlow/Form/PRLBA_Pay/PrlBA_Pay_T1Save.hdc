@@ -21,9 +21,6 @@ SQLForCondition3=select 'µ¥ºÅ£º'|| ##Num##|| '£»' || ##TheMemo##  TheFlowMemo,'´
 
 SqlForCondition5=select code AcgCode from prl_acg where EntGid = __ENTGID__ and gid = ##AcgTwoGid##
 
-;È¡³öÏÂÒ»²½ÉóÅúÈË
-SqlForCondition6=select F_PrlBA_getApp(__ENTGID__,##ModelGid##,__USRGID__,nvl(##payfee##, 0),##CompanyGid##,##AcgCode##) T2Gid from dual
-
 [AddtionalSQL]
 ;²Ù×÷£¬Ã»ÓĞ·µ»ØµÄ½á¹û£¬ÊÇÔÚÊı¾İ¿âÖĞÖ´ĞĞ£¬ÓÉInsert, Update, DeleteÃüÁî¡£´ÓSQL1¡«SQL20¹²Ö§³Ö20Ìõ
 
@@ -121,7 +118,7 @@ PageKind=0
 ^^WFCreate^^1=WFFlowCreate(|^^TheFlowMemo^^ | ^^FlowGid^^)
 
 ;Ìá½»£¬Á÷×ªµ½T2ÉóÅúÒ³Ãæ
-^^WF^^3=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T2 | T2Gid | and ##Stat## = 'Ìá½»'| ^^AppFlowMemo^^)
+^^WF^^3=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T2 | null | and ##Stat## = 'Ìá½»'| ^^AppFlowMemo^^)
 
 ;ÖÕÖ¹£¬½áÊøÁ÷³Ì
 ^^WF^^4=WFFlowFinish( ^^CurUrl^^ | and ##Stat## = 'ÖÕÖ¹')
