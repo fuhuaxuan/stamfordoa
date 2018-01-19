@@ -241,9 +241,9 @@
   <col style="padding-left:4px;width:10%" valign="top">
   <col style="padding-left:4px;width:90%" valign="top">
   <tr valign="top">
-    <td class="DtlBarTitle"><A HREF="javascript:void(0);" onclick="GetApp('CGUsr','采购人员','000201')">采购人员(抄送)</a>&nbsp;<font color="red">*</font></td>
+    <td class="DtlBarTitle"><A HREF="javascript:void(0);" onclick="DataInterface(frmDataInterface_App)">采购人员(抄送)</a>&nbsp;<font color="red">*</font></td>
     <td class="listtd">
-      <input type="text" name="CGUsrName" readonly maxlength="64" value="<HDPrint Value=#CGUsrName# Replace=#DBField2Input#>" class="JQText JQMust"  onclick="GetApp('CGUsr','采购人员','000201')" style="width:150px;">
+      <input type="text" name="CGUsrName" readonly maxlength="64" value="<HDPrint Value=#CGUsrName# Replace=#DBField2Input#>" class="JQText JQMust" onclick="DataInterface(frmDataInterface_App)" style="width:150px;">
       <input name="CGUsrGid" type="hidden" maxlength="32" value="<HDPrint Value=#CGUsrGid# Replace=#DBField2Input#>" class="JQText">
       <input name="CGUsrCode" type="hidden" maxlength="64" value="<HDPrint Value=#CGUsrCode# Replace=#DBField2Input#>" class="JQText">
     </td>
@@ -323,8 +323,8 @@
 <FORM NAME="frmDataInterface_App" ACTION="">
   <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="审批人列表">
 
-  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select u.gid, u.code, u.name, u.atype from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
-  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select u.gid, u.code, u.name, u.atype from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) like '<HDPrint Value=#ParentCode# Replace=#DBField2Input#>%' and o.Name = '采购部'">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) like '<HDPrint Value=#ParentCode# Replace=#DBField2Input#>%' and o.Name = '采购部'">
   <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by u.code">
   <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
   <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
@@ -338,8 +338,8 @@
   <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
   <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
 
-  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="CGUsrGid^CGUsrCode^CGUsrName">
   <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
-  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="CallApp">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="">
   <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
 </FORM>

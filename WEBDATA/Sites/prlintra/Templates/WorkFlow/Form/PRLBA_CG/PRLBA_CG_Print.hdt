@@ -22,44 +22,37 @@
 </table>
 
 <table width="645" cellspacing="0" cellpadding="0" align="center" style="border-left:1 solid black;">
-  <col style="padding-left:4px;width:10%" valign="top">
-  <col style="padding-left:4px;width:40%" valign="top">
-  <col style="padding-left:4px;width:10%" valign="top">
-  <col style="padding-left:4px;width:40%" valign="top">
+  <col style="padding-left:4px;width:17%" valign="top">
+  <col style="padding-left:4px;width:83%" valign="top">
   <tr valign="top">
-    <td class="PrintTdRT">名称:</td>
-    <td class="PrintTdRT"><HDPrint Value=#Title#></td>
-    <td class="PrintTdRT">日期:</td>
-    <td class="PrintTdRT"><HDPrint Value=#ApplyDate#></td>
-  </tr>
-  <tr valign="top">
-    <td class="PrintTdRT">备注:</td>
-    <td class="PrintTdRT" colspan="3"><HDPrint Value=#Memo#></td>
+    <td class="PrintTdRT" align="center">标题:</td>
+    <td class="PrintTdRT"><HDPrint Value=#CGTitle#></td>
   </tr>
 </table>
-<table width="645" cellspacing="0" cellpadding="0" align="center" ID="tb_Dtl" style="border-bottom:1 solid black;border-left:1 solid black;">
+<table width="645" cellspacing="0" cellpadding="0" align="center" ID="tb_Dtl" style="border-left:1 solid black;">
   <colgroup>
-     <col style="width:5%">
-     <col style="width:20%">
-     <col style="width:20%">
-     <col style="width:15%">
-     <col style="width:20%">
-     <col style="width:20%">
+     <col style="width:17%">
+     <col style="width:83%">
   </colgroup>
   <thead>
   <tr>
     <td class="PrintTdRT" align="center">行号</td>
-    <td class="PrintTdRT" align="center">明细1</td>
-    <td class="PrintTdRT" align="center">明细2</td>
-    <td class="PrintTdRT" align="center">明细3</td>
-    <td class="PrintTdRT" align="center">明细4</td>
-    <td class="PrintTdRT" align="center">明细5</td>
+    <td class="PrintTdRT" align="center">采购内容</td>
   </tr>
   </thead>
   <tbody>
+<HDPrint Value=#DtlList# Replace=#None#>
   </tbody>
 </table>
-<HDPrint Value=#DtlList# Replace=#None#>
+<table width="645" cellspacing="0" cellpadding="0" align="center" style="border-left:1 solid black;">
+  <col style="padding-left:4px;width:17%" valign="top">
+  <col style="padding-left:4px;width:83%" valign="top">
+  <tr valign="top">
+    <td class="PrintTdRT" align="center">备注:</td>
+    <td class="PrintTdRT"><HDPrint Value=#CGMemo#></td>
+  </tr>
+</table>
+<HDPrint Value=#AppList# Replace=#None#>
 <script language="javascript">
   window.print();
 </script>

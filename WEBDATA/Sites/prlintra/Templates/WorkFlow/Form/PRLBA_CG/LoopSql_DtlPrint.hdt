@@ -1,0 +1,6 @@
+<hdloop>
+  <tr>
+    <td class="PrintTdRT" align="center"><HDPrint Value=#Line#></td>
+    <td class="PrintTdRT"><HDPrint Value=#CGMemo#></td>
+  </tr>
+</hdloop>
