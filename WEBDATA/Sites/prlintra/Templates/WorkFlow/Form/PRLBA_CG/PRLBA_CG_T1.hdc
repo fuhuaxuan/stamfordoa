@@ -16,7 +16,7 @@ SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName,d.Name StepName fro
 SQL1=select ##NewNum## Num,##CurUsrName## FillUsrName,to_char(sysdate,'YYYY.MM.DD HH24:MI') CreateDate from dual where ##FlowGid## is null
 
 ;当FlowGid为空，T1时，获取发起人部门
-SQL2=select a.Gid FillDeptGid, a.Code2 FillDeptCode, a.Name FillDeptName,substr(a.code2,0,4) ParentCode from Dept a, HR_Emp b where a.EntGid=__ENTGID__ and b.EntGid=__ENTGID__ and b.UsrGid = __USRGID__ and a.Gid = b.DeptGid and ##FlowGid## is null
+SQL2=select a.Gid FillDeptGid, a.Code2 FillDeptCode, a.Name FillDeptName,decode(substr(a.code2,0,4),'0003','0002',substr(a.code2,0,4)) ParentCode from Dept a, HR_Emp b where a.EntGid=__ENTGID__ and b.EntGid=__ENTGID__ and b.UsrGid = __USRGID__ and a.Gid = b.DeptGid and ##FlowGid## is null
 
 ;判断是T1是发起，还是保存
 Sql3=select count(*) IsT1 from WF_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##

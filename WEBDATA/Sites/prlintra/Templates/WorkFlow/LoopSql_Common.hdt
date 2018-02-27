@@ -43,13 +43,7 @@
 
     tdArr[k++] = '<td>'
     +'<input type="checkbox" name="chkAll_1'+ iRow +'" class="JQCheckBox" JQTag="chk_1'+ iRow +'"><font color="blue">全选/全否</font>|'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0001" class="JQCheckBox">[0001]圣丹福'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0002" class="JQCheckBox">[0002]现代医院'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0003" class="JQCheckBox">[0003]现代美容医院'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0004" class="JQCheckBox">[0004]成都圣丹福<br>'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0005" class="JQCheckBox">[0005]洛阳圣丹福'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0006" class="JQCheckBox">[0006]现代肿瘤医院'
-    +'<input type="checkbox" name="chk_1'+ iRow +'" value="0007" class="JQCheckBox">[0007]成都圣丹福整形美容医院'
+    +getOption(iRow)
     +'<input type="hidden" name="DeptRt_1'+ iRow +'" value="'+DeptRt+'" JQChkName="chk_1'+ iRow +'" JQChkTab=";">'
     +'</td>';
 
