@@ -83,4 +83,4 @@ Log=
 PageKind=0
 
 ;同意，流转到T3
-WF1=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T5 | AppGid | |^^AppFlowMemo^^)
+WF1=WFFlowRun( ^^CurUrl^^ | ^^ModelCode^^_T5 | T5Gid | |^^AppFlowMemo^^)

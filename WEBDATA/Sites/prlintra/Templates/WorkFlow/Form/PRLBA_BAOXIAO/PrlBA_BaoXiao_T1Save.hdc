@@ -27,7 +27,7 @@ SQL1=update wf_flow set flownote = ##TheFlowMemo## where EntGid = __ENTGID__ and
 SQL2=insert into wf_^^ModelCode^^ (EntGid,ModelGid,FlowGid,Num,LastUpdDate,Stat,FillUsrGid,FillUsrCode,FillUsrName,FillDeptGid,FillDeptCode,FillDeptName)select __ENTGID__,##ModelGid##,##FlowGid##,##Num##,sysdate,##Stat##,__USRGID__,__USRCODE__,__USRNAME__,##FillDeptGid##,##FillDeptCode##,##FillDeptName## from dual where ##IsNew## <= 0
 
 ;TMod-更新本流程主表信息，保存，提交
-SQL3=update wf_^^ModelCode^^ set (LastUpdDate,Stat,FillUsrGid,FillUsrCode,FillUsrName,FillDeptGid,FillDeptCode,FillDeptName,ApplyUsrGid,ApplyUsrCode,ApplyUsrName,IsCM,ComGid,ComName,SumFee,Memo,PayMan,PayBank,PayAccount) = (select sysdate,##Stat##,__USRGID__,__USRCODE__,__USRNAME__,##FillDeptGid##,##FillDeptCode##,##FillDeptName##,##ApplyUsrGid##,##ApplyUsrCode##,##ApplyUsrName##,##IsCM##,##ComGid##,##ComName##,##SumFee##,##Memo##,##PayMan##,##PayBank##,##PayAccount## from dual) where FlowGid = ##FlowGid## and EntGid = __ENTGID__ and ##Stat## <> '终止'
+SQL3=update wf_^^ModelCode^^ set (LastUpdDate,Stat,FillDeptGid,FillDeptCode,FillDeptName,ApplyUsrGid,ApplyUsrCode,ApplyUsrName,IsCM,ComGid,ComName,SumFee,Memo,PayMan,PayBank,PayAccount) = (select sysdate,##Stat##,##FillDeptGid##,##FillDeptCode##,##FillDeptName##,##ApplyUsrGid##,##ApplyUsrCode##,##ApplyUsrName##,##IsCM##,##ComGid##,##ComName##,##SumFee##,##Memo##,##PayMan##,##PayBank##,##PayAccount## from dual) where FlowGid = ##FlowGid## and EntGid = __ENTGID__ and ##Stat## <> '终止'
 
 ;更新本流程流程主表信息，终止
 SQL4=update wf_^^ModelCode^^ set (LastUpdDate,Stat,EndMemo) = (select sysdate,##Stat##,##EndMemo## from dual) where FlowGid = ##FlowGid## and EntGid = __ENTGID__ and ##Stat## = '终止'

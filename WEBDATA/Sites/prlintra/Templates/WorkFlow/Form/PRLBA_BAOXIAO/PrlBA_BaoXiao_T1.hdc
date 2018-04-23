@@ -19,16 +19,19 @@ SqlForCondition1=select wm.Code ModelCode, wm.Name ModelName,d.Name StepName fro
 SQL1=select ##NewNum## Num,##CurUsrName## FillUsrName,to_char(sysdate,'YYYY.MM.DD HH24:MI') CreateDate from dual where ##FlowGid## is null
 
 ;得到当前用户的部门名称
-SQL2=select d.Gid FillDeptGid, d.Code2 FillDeptCode, d.Name FillDeptName,hr.UsrGid ApplyUsrGid,hr.code ApplyUsrCode,hr.name ApplyUsrName from HR_Emp hr,Dept d where hr.EntGid=__ENTGID__ and hr.EntGid=d.EntGid and hr.UsrGid = __USRGID__ and hr.DeptGid = d.Gid and ##FlowGid## is null
+SQL2=select d.Gid FillDeptGid, d.Code2 FillDeptCode, d.Name FillDeptName from HR_Emp hr,Dept d where hr.EntGid=__ENTGID__ and hr.EntGid=d.EntGid and hr.UsrGid = __USRGID__ and hr.DeptGid = d.Gid
+
+;得到当前用户的部门名称
+SQL3=select hr.UsrGid ApplyUsrGid,hr.code ApplyUsrCode,hr.name ApplyUsrName from HR_Emp hr where hr.EntGid=__ENTGID__ and hr.UsrGid = __USRGID__ and ##FlowGid## is null
 
 ;判断是T1是发起，还是保存
-Sql3=select count(*) IsNew from wf_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##
+Sql4=select count(*) IsNew from wf_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##
 
 ;TMod时，获取本流程主表信息
-Sql4=select * from wf_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##
+Sql5=select * from wf_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##
 
 ;TMod时，获取本流程已审批的审批人的个数，用于判断是否显示审批人
-SQL5=select count(*) IsShow from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid##
+SQL6=select count(*) IsShow from wf_^^ModelCode^^_App where EntGid = __ENTGID__ and FlowGid = ##FlowGid##
 
 ;TMod时，获取本流程附件信息
 LoopSQL1=select Attach_Title ItemGid,Attach_Title ItemName from wf_^^ModelCode^^_Attach where EntGid = __ENTGID__ and  FlowGid = ##FlowGid## order by Attach_Title

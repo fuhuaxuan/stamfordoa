@@ -19,7 +19,7 @@ SqlForCondition2=select substr(f.FillUsrDeptCode,0,4) ProCode from wf_^^ModelCod
 SQL1=select ##NewNum## Num,##CurUsrName## FillUsrName,to_char(sysdate,'YYYY.MM.DD HH24:MI') CreateDate from dual where ##FlowGid## is null
 
 ;当FlowGid为空，T1时，获取发起人部门
-SQL2=select a.Gid FillUsrDeptGid, a.Code2 FillUsrDeptCode, a.Name FillUsrDept from Dept a, HR_Emp b where a.EntGid=__ENTGID__ and b.EntGid=__ENTGID__ and b.UsrGid = __USRGID__ and a.Gid = b.DeptGid and ##FlowGid## is null
+SQL2=select a.Gid FillUsrDeptGid, a.Code2 FillUsrDeptCode, a.Name FillUsrDept from Dept a, HR_Emp b where a.EntGid=__ENTGID__ and b.EntGid=__ENTGID__ and b.UsrGid = __USRGID__ and a.Gid = b.DeptGid
 
 ;判断是T1是发起，还是保存
 Sql3=select count(*) IsNew from wf_^^ModelCode^^ where EntGid = __ENTGID__ and  FlowGid = ##FlowGid##
