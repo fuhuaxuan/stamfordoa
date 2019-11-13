@@ -186,3 +186,12 @@ HDT=Templates\Prl_DOA\Prl_BaoXiaoList.hdt
 [Prl_BaoXiaoDown]
 HDC=Templates\Prl_DOA\Prl_BaoXiaoList.hdc
 HDT=Templates\Prl_DOA\Prl_BaoXiaoDown.hdt
+
+
+[WfTodoTaskDown]
+HDC=Templates\WorkFlow\WfTodoTaskList.hdc
+HDT=Templates\WorkFlow\WfTodoTaskDown.hdT
+
+[WfFlowDown]
+HDC=Templates\WorkFlow\WfFlowList.hdc
+HDT=Templates\WorkFlow\WfFlowDown.hdT

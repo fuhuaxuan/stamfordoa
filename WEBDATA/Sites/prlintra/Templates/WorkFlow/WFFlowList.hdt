@@ -86,7 +86,7 @@
       <INPUT TYPE="hidden" name="NotFirst" value="1">
       <INPUT TYPE="submit" name="btnSearch" class="NormalSbt" value=" 查询 " onclick="return CheckSubmit()">
       <INPUT TYPE="reset" name="btnSearch" class="NormalSbt" value=" 默认 ">
-      <INPUT TYPE="hidden" name="btnDownload" value="根据条件下载汇总" class="normalsbt" onclick="return CheckSubmit()">
+      <INPUT TYPE="button" name="btnDownload" class="NormalSbt" value="下载Excel" onclick="return JQListDown('##HDNet_AppName##/__ExplainModule?Url=WfFlowDown&UsrGid=<HDPrint Value=#UsrGid#>')">
       <INPUT TYPE="hidden" name="Rep_Download" value="">
     </td>
   </tr>
